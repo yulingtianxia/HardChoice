@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UIAlertViewDelegate ,UITextFieldDelegate{
+class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate,CustomIOS7AlertViewDelegate{
 
     var managedObjectContext: NSManagedObjectContext? = nil
 
@@ -32,16 +32,18 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func insertNewObject(sender: AnyObject) {
-        let alertView = UIAlertView()
-        alertView.alertViewStyle = .PlainTextInput
-        alertView.addButtonWithTitle("OK")
-        alertView.delegate = self
-        let textField = alertView.textFieldAtIndex(0)
+        let textField = UITextField(frame:CGRectMake(0,0,290,50))
+        textField.becomeFirstResponder()
         textField.placeholder = "question"
         textField.keyboardType = .Default
         textField.returnKeyType = .Done
         textField.delegate = self
-        alertView.show()
+        let av = CustomIOS7AlertView()
+        av.containerView = textField
+        av.buttonTitles = ["OK","Cancel"]
+        av.delegate = self
+        av.useMotionEffects = true
+        av.show()
         
     }
 
@@ -173,16 +175,19 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.tableView.endUpdates()
     }
 
-    // #pragma mark AlertViewDelegate
-    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
-        if buttonIndex==0{
+    // #pragma mark CustomIOS7AlertViewDelegate
+    
+    func customIOS7dialogButtonTouchUpInside(alertView:AnyObject!, clickedButtonAtIndex buttonIndex:Int){
+        switch buttonIndex{
+            case 0:
             let context = self.fetchedResultsController.managedObjectContext
             let entity = self.fetchedResultsController.fetchRequest.entity
             let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Question
             
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-            newManagedObject.content = alertView.textFieldAtIndex(0).text
+            let av = alertView as CustomIOS7AlertView
+            newManagedObject.content = (av.containerView as UITextField).text
             
             // Save the context.
             var error: NSError? = nil
@@ -192,14 +197,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 //println("Unresolved error \(error), \(error.userInfo)")
                 abort()
             }
+            alertView.close()
+            default:
+            alertView.close()
         }
     }
-    
     
     // #pragma mark UITextFieldDelegate
     
     func textFieldDidBeginEditing(textField: UITextField!){
-        let animationDuration:NSTimeInterval  = 0.30
+        let animationDuration:NSTimeInterval  = 1
         var frame = self.view.frame;
         frame.origin.y-=116
         frame.size.height+=116
@@ -210,7 +217,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func textFieldShouldEndEditing(textField: UITextField!) -> Bool{
-        let animationDuration:NSTimeInterval  = 0.30
+        let animationDuration:NSTimeInterval  = 1
         var frame = self.view.frame;
         frame.origin.y+=116;
         frame.size.height-=116;

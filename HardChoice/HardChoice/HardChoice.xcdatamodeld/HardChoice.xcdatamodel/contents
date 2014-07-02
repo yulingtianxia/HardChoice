@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6172.15" systemVersion="13E28" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Choice" representedClassName="Choice" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weight" attributeType="Integer 32" defaultValueString="1" syncable="YES"/>
         <relationship name="question" maxCount="1" deletionRule="Nullify" destinationEntity="Question" inverseName="choices" inverseEntity="Question" syncable="YES"/>
     </entity>
     <entity name="Question" representedClassName="Question" syncable="YES">
@@ -9,7 +10,7 @@
         <relationship name="choices" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Choice" inverseName="question" inverseEntity="Choice" syncable="YES"/>
     </entity>
     <elements>
+        <element name="Choice" positionX="216" positionY="162" width="128" height="88"/>
         <element name="Question" positionX="412" positionY="162" width="128" height="73"/>
-        <element name="Choice" positionX="216" positionY="162" width="128" height="73"/>
     </elements>
 </model>

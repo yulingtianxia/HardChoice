@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,UIAlertViewDelegate ,UITextFieldDelegate{
+class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,CustomIOS7AlertViewDelegate,UITextFieldDelegate{
     
     var managedObjectContext: NSManagedObjectContext? = nil
 
@@ -38,17 +38,14 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     @IBAction func insertNewObject(sender: AnyObject) {
-        
-        let alertView = UIAlertView()
-        alertView.alertViewStyle = .PlainTextInput
-        alertView.addButtonWithTitle("OK")
-        alertView.delegate = self
-        let textField = alertView.textFieldAtIndex(0)
-        textField.placeholder = "question"
-        textField.keyboardType = .Default
-        textField.returnKeyType = .Done
-        textField.delegate = self
-        alertView.show()
+        let container = ChoiceView(frame:CGRectMake(0,0,290,100))
+        container.setDelegate(self)
+        let av = CustomIOS7AlertView()
+        av.containerView = container
+        av.buttonTitles = ["OK","Cancel"]
+        av.delegate = self
+        av.useMotionEffects = true
+        av.show()
         
     }
     
@@ -102,6 +99,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
         cell.textLabel.text = object.name
+        cell.detailTextLabel.text = "\(object.weight)"
     }
     
     // #pragma mark - Fetched results controller
@@ -122,7 +120,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
@@ -179,26 +177,38 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         self.tableView.endUpdates()
     }
     
-    // #pragma mark AlertViewDelegate
-    func alertView(alertView: UIAlertView!, clickedButtonAtIndex buttonIndex: Int){
-        if buttonIndex==0{
+    // #pragma mark CustomIOS7AlertViewDelegate
+    
+    func customIOS7dialogButtonTouchUpInside(alertView:AnyObject!, clickedButtonAtIndex buttonIndex:Int){
+        switch buttonIndex{
+        case 0:
             let context = self.fetchedResultsController.managedObjectContext
             let entity = self.fetchedResultsController.fetchRequest.entity
             let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Choice
             
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-            //        newManagedObject.setValue(NSDate.date(), forKey: "timeStamp")
-            newManagedObject.name = alertView.textFieldAtIndex(0).text
-            detailItem?.addChoicesObject(newManagedObject)
+            let av = alertView as CustomIOS7AlertView
+            newManagedObject.name = (av.containerView as ChoiceView).nameTF.text
+            
+            
+            if let weight = (av.containerView as ChoiceView).weightTF.text.toInt()?{
+                newManagedObject.weight = weight
+            }
+            
+            detailItem!.addChoicesObject(newManagedObject)
+            
             // Save the context.
             var error: NSError? = nil
             if !context.save(&error) {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                //println("Unresolved error \(error), \(error.userInfo)")
-                abort()
+                println("Unresolved error \(error!), \(error!.userInfo)")
+//                abort()
             }
+            alertView.close()
+        default:
+            alertView.close()
         }
     }
     
