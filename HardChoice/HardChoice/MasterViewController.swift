@@ -13,6 +13,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     var addAV = CustomIOS7AlertView()
     var modifyAV = CustomIOS7AlertView()
     var managedObjectContext: NSManagedObjectContext? = nil
+    var selectedIndexPath:NSIndexPath!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -97,10 +98,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
 //        modifyObject(indexPath)
+        selectedIndexPath = indexPath
     }
     
     override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!){
-//        modifyObject(indexPath)
+        selectedIndexPath = indexPath
+        modifyObject(indexPath)
         
     }
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -210,7 +213,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Question
             }
             if modifyAV == av{
-                newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.tableView.indexPathForSelectedRow()) as Question
+                newManagedObject = self.fetchedResultsController.objectAtIndexPath(selectedIndexPath) as Question
             }
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
