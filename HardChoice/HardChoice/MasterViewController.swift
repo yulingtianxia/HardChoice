@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate,CustomIOS7AlertViewDelegate{
-
+    var addAV = CustomIOS7AlertView()
+    var modifyAV = CustomIOS7AlertView()
     var managedObjectContext: NSManagedObjectContext? = nil
-
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -38,15 +38,29 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         textField.keyboardType = .Default
         textField.returnKeyType = .Done
         textField.delegate = self
-        let av = CustomIOS7AlertView()
-        av.containerView = textField
-        av.buttonTitles = ["OK","Cancel"]
-        av.delegate = self
-        av.useMotionEffects = true
-        av.show()
+        addAV.containerView = textField
+        addAV.buttonTitles = ["OK","Cancel"]
+        addAV.delegate = self
+        addAV.useMotionEffects = true
+        addAV.show()
         
     }
-
+    
+    func modifyObject(indexPath:NSIndexPath){
+        let question = self.fetchedResultsController.objectAtIndexPath(indexPath) as Question
+        let textField = UITextField(frame:CGRectMake(0,0,290,50))
+        textField.becomeFirstResponder()
+        textField.placeholder = "question"
+        textField.keyboardType = .Default
+        textField.returnKeyType = .Done
+        textField.delegate = self
+        modifyAV.containerView = textField
+        modifyAV.buttonTitles = ["OK","Cancel"]
+        modifyAV.delegate = self
+        modifyAV.useMotionEffects = true
+        (modifyAV.containerView as UITextField).text = question.content
+        modifyAV.show()
+    }
     // #pragma mark - Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -80,7 +94,15 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         // Return false if you do not want the specified item to be editable.
         return true
     }
-
+    
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
+//        modifyObject(indexPath)
+    }
+    
+    override func tableView(tableView: UITableView!, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath!){
+//        modifyObject(indexPath)
+        
+    }
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
@@ -182,11 +204,16 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case 0:
             let context = self.fetchedResultsController.managedObjectContext
             let entity = self.fetchedResultsController.fetchRequest.entity
-            let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Question
-            
+            var newManagedObject:Question!
+            let av = alertView as CustomIOS7AlertView
+            if addAV == av{
+                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Question
+            }
+            if modifyAV == av{
+                newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.tableView.indexPathForSelectedRow()) as Question
+            }
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-            let av = alertView as CustomIOS7AlertView
             newManagedObject.content = (av.containerView as UITextField).text
             
             // Save the context.

@@ -11,7 +11,9 @@ import UIKit
 class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,CustomIOS7AlertViewDelegate,UITextFieldDelegate{
     
     var managedObjectContext: NSManagedObjectContext? = nil
-
+    var addAV = CustomIOS7AlertView()
+    var modifyAV = CustomIOS7AlertView()
+    var selectedIndexPath:NSIndexPath!
     var detailItem: Question? {
         didSet {
             // Update the view.
@@ -22,7 +24,17 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     func configureView() {
         // Update the user interface for the detail item.
         if let detail: Question = self.detailItem {
+            let container = ChoiceView(frame:CGRectMake(0,0,290,100))
+            container.setDelegate(self)
             
+            addAV.containerView = container
+            addAV.buttonTitles = ["OK","Cancel"]
+            addAV.delegate = self
+            addAV.useMotionEffects = true
+            modifyAV.containerView = container
+            modifyAV.buttonTitles = ["OK","Cancel"]
+            modifyAV.delegate = self
+            modifyAV.useMotionEffects = true
         }
     }
 
@@ -37,16 +49,44 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         // Dispose of any resources that can be recreated.
     }
     
+    
+    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent!) {
+        if motion == .MotionShake{
+            
+            let count = self.fetchedResultsController.fetchedObjects.count
+            var arr = fetchedResultsController.fetchedObjects
+            var sum:Int = 0
+            for object : AnyObject in arr{
+                sum+=(object as Choice).weight.integerValue
+            }
+            if sum>0{
+                var lucknum = arc4random()%UInt32(sum)
+//                println("\(lucknum)")
+                var num = 0
+                var n:UInt32 = 0
+                while lucknum>0{
+                    if lucknum <= n{
+                        break
+                    }
+                    else{
+                        num++
+                        lucknum-=n
+                        n = UInt32((arr[num] as Choice).weight.integerValue)
+                    }
+                }
+//                println("\(num)")
+                var alertView = UIAlertView()
+                alertView.alertViewStyle = .Default
+                alertView.title = "恭喜"
+                alertView.message = "\(detailItem!.content)的答案是：\n\((arr[num] as Choice).name)"
+                alertView.addButtonWithTitle("OK")
+                alertView.show()
+            }
+            
+        }
+    }
     @IBAction func insertNewObject(sender: AnyObject) {
-        let container = ChoiceView(frame:CGRectMake(0,0,290,100))
-        container.setDelegate(self)
-        let av = CustomIOS7AlertView()
-        av.containerView = container
-        av.buttonTitles = ["OK","Cancel"]
-        av.delegate = self
-        av.useMotionEffects = true
-        av.show()
-        
+        addAV.show()
     }
     
 //    // #pragma mark - Segues
@@ -79,6 +119,14 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
+    }
+    
+    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
+        selectedIndexPath = indexPath
+        let choice = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
+        (modifyAV.containerView as ChoiceView).nameTF.text = choice.name
+        (modifyAV.containerView as ChoiceView).weightTF.text = "\(choice.weight)"
+        modifyAV.show()
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -184,11 +232,17 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         case 0:
             let context = self.fetchedResultsController.managedObjectContext
             let entity = self.fetchedResultsController.fetchRequest.entity
-            let newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Choice
-            
+            var newManagedObject:Choice!
+            let av = alertView as CustomIOS7AlertView
+            if addAV == av{
+                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Choice
+            }
+            if modifyAV == av{
+                newManagedObject = self.fetchedResultsController.objectAtIndexPath(selectedIndexPath) as Choice
+            }
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-            let av = alertView as CustomIOS7AlertView
+            
             newManagedObject.name = (av.containerView as ChoiceView).nameTF.text
             
             
@@ -210,6 +264,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         default:
             alertView.close()
         }
+        self.configureView()
     }
     
     
