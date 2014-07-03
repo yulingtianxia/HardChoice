@@ -145,7 +145,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         let sortDescriptor = NSSortDescriptor(key: "content", ascending: true)
         let sortDescriptors = [sortDescriptor]
         
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = sortDescriptors
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
