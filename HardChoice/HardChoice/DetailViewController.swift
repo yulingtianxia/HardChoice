@@ -71,6 +71,9 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                     else{
                         num++
                         lucknum-=n
+                        if num>=count{
+                            break
+                        }
                         n = UInt32((arr[num] as Choice).weight.integerValue)
                     }
                 }
@@ -174,7 +177,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Choice")
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
