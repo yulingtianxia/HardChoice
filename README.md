@@ -7,6 +7,6 @@ HardChoice
 ![](http://wal8.com/64224622)
 ![](http://wal8.com/64224623)
 
-
+HardChoice代码教程地址：http://yulingtianxia.com/blog/2014/07/03/chu-shi-core-data-3/
 	
 
