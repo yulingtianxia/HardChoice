@@ -10,3 +10,6 @@ HardChoice
 HardChoice代码教程地址：http://yulingtianxia.com/blog/2014/07/03/chu-shi-core-data-3/
 	
 
+如果遇到了类型转换编译报错，可以手动加代码强制转换或者用64位模拟器（如iPhone5s）运行
+
+建议在Xcode6beta3下运行，beta4会出现问题，正在修复中

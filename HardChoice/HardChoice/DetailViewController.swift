@@ -199,9 +199,9 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
-        case NSFetchedResultsChangeInsert:
+        case .Insert:
             self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case NSFetchedResultsChangeDelete:
+        case .Delete:
             self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
         default:
             return
@@ -210,13 +210,13 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath) {
         switch type {
-        case NSFetchedResultsChangeInsert:
+        case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
-        case NSFetchedResultsChangeDelete:
+        case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        case NSFetchedResultsChangeUpdate:
+        case .Update:
             self.configureCell(tableView.cellForRowAtIndexPath(indexPath), atIndexPath: indexPath)
-        case NSFetchedResultsChangeMove:
+        case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
         default:
