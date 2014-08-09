@@ -11,7 +11,10 @@ import UIKit
 class ChoiceView: UIView {
     let nameTF = UITextField(frame:CGRectMake(0,0,290,50))
     let weightTF = UITextField(frame:CGRectMake(0,50,290,50))
-    init(frame: CGRect) {
+    required init(coder: NSCoder) {
+        fatalError("NSCoding not supported")
+    }
+    override init(frame: CGRect) {
         super.init(frame: frame)
         // Initialization code
         

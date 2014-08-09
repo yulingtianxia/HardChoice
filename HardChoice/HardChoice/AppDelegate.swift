@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Returns the managed object context for the application.
     // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
     var managedObjectContext: NSManagedObjectContext {
-        if !_managedObjectContext {
+        if _managedObjectContext == nil {
             let coordinator = self.persistentStoreCoordinator
             if coordinator != nil {
                 _managedObjectContext = NSManagedObjectContext()
@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Returns the managed object model for the application.
     // If the model doesn't already exist, it is created from the application's model.
     var managedObjectModel: NSManagedObjectModel {
-        if !_managedObjectModel {
+        if _managedObjectModel == nil {
             let modelURL = NSBundle.mainBundle().URLForResource("HardChoice", withExtension: "momd")
             _managedObjectModel = NSManagedObjectModel(contentsOfURL: modelURL)
         }
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Returns the persistent store coordinator for the application.
     // If the coordinator doesn't already exist, it is created and the application's store added to it.
     var persistentStoreCoordinator: NSPersistentStoreCoordinator {
-        if !_persistentStoreCoordinator {
+        if _persistentStoreCoordinator == nil {
             let storeURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("HardChoice.sqlite")
             var error: NSError? = nil
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
