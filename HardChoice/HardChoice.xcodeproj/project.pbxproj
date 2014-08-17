@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A46D15811963F5C70093AE53 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46D15801963F5C70093AE53 /* ChoiceView.swift */; };
+		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
 		A48128261962A39F0048AB6C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128251962A39F0048AB6C /* MasterViewController.swift */; };
@@ -45,6 +46,7 @@
 
 /* Begin PBXFileReference section */
 		A46D15801963F5C70093AE53 /* ChoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
+		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
 		A481281B1962A39F0048AB6C /* HardChoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HardChoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A481281F1962A39F0048AB6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A48128201962A39F0048AB6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				A4CEA7FA1963D79200CE2B8B /* CustomIOS7AlertView.h */,
 				A4CEA7FB1963D79200CE2B8B /* CustomIOS7AlertView.m */,
 				A46D15801963F5C70093AE53 /* ChoiceView.swift */,
+				A474C91F19A0854A00262645 /* DynamicCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */,
+				A474C92019A0854A00262645 /* DynamicCell.swift in Sources */,
 				A46D15811963F5C70093AE53 /* ChoiceView.swift in Sources */,
 				A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */,
 				A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */,

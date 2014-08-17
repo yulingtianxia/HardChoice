@@ -7,8 +7,10 @@ HardChoice
 ![](http://wal8.com/64224622)
 ![](http://wal8.com/64224623)
 
-HardChoice代码教程地址：http://yulingtianxia.com/blog/2014/07/03/chu-shi-core-data-3/
-	
+HardChoice代码教程地址：  
+
+- CoreData:http://yulingtianxia.com/blog/2014/07/03/chu-shi-core-data-3/  
+- TableView self-sizing Cell:http://yulingtianxia.com/blog/2014/08/17/New-in-Table-and-Collection-Views/  
 
 如果遇到了类型转换编译报错，可以手动加代码强制转换或者用64位模拟器（如iPhone5s）运行
 

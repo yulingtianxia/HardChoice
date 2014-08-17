@@ -25,6 +25,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
+        self.tableView.estimatedRowHeight = 44
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +87,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("QuestionCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("QuestionCell", forIndexPath: indexPath) as DynamicCell
         self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
@@ -121,7 +122,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
 
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Question
         cell.textLabel.text = object.content
     }
@@ -149,7 +150,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Master")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
@@ -187,7 +188,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             case .Delete:
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             case .Update:
-                self.configureCell(tableView.cellForRowAtIndexPath(indexPath), atIndexPath: indexPath)
+                self.configureCell(tableView.cellForRowAtIndexPath(indexPath) as DynamicCell, atIndexPath: indexPath)
             case .Move:
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)

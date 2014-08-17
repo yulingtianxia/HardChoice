@@ -114,7 +114,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChoiceCell", forIndexPath: indexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ChoiceCell", forIndexPath: indexPath) as DynamicCell
         self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
@@ -147,7 +147,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath) {
+    func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
         cell.textLabel.text = object.name
         cell.detailTextLabel.text = "\(object.weight)"
@@ -177,7 +177,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Choice")
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         
@@ -215,7 +215,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         case .Update:
-            self.configureCell(tableView.cellForRowAtIndexPath(indexPath), atIndexPath: indexPath)
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath) as DynamicCell, atIndexPath: indexPath)
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
