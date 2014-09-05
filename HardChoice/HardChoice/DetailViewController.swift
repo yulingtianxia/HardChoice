@@ -50,11 +50,11 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent!) {
+    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent) {
         if motion == .MotionShake{
             
-            let count = self.fetchedResultsController.fetchedObjects.count
-            var arr = fetchedResultsController.fetchedObjects
+            let count = self.fetchedResultsController.fetchedObjects!.count
+            var arr = fetchedResultsController.fetchedObjects!
             var sum:Int = 0
             for object : AnyObject in arr{
                 sum+=(object as Choice).weight.integerValue
@@ -105,11 +105,11 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     // #pragma mark - Table View
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections.count
+        return self.fetchedResultsController.sections!.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections[section] as NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
     
@@ -124,7 +124,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         return true
     }
     
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!){
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         selectedIndexPath = indexPath
         let choice = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
         (modifyAV.containerView as ChoiceView).nameTF.text = choice.name
@@ -149,8 +149,8 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
-        cell.textLabel.text = object.name
-        cell.detailTextLabel.text = "\(object.weight)"
+        cell.textLabel!.text = object.name
+        cell.detailTextLabel!.text = "\(object.weight)"
     }
     
     // #pragma mark - Fetched results controller
@@ -162,7 +162,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         
         let fetchRequest = NSFetchRequest()
         // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Choice", inManagedObjectContext: self.managedObjectContext)
+        let entity = NSEntityDescription.entityForName("Choice", inManagedObjectContext: self.managedObjectContext!)
         fetchRequest.entity = entity
 
         fetchRequest.predicate = NSPredicate(format:"question.content='\(detailItem!.content)'")
@@ -177,7 +177,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         
         // Edit the section name key path and cache name if appropriate.
         // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
         aFetchedResultsController.delegate = self
         _fetchedResultsController = aFetchedResultsController
         

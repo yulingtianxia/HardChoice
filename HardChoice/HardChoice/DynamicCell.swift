@@ -13,22 +13,22 @@ class DynamicCell: UITableViewCell {
     required init(coder: NSCoder) {
         super.init(coder: coder)
         if textLabel != nil {
-            textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-            textLabel.numberOfLines = 0
+            textLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+            textLabel!.numberOfLines = 0
         }
         if detailTextLabel != nil {
-            detailTextLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
-            detailTextLabel.numberOfLines = 0
+            detailTextLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+            detailTextLabel!.numberOfLines = 0
         }
     }
     
     override func constraints() -> [AnyObject] {
         var constraints = [AnyObject]()
         if textLabel != nil {
-            constraints.extend(constraintsForView(textLabel))
+            constraints.extend(constraintsForView(textLabel!))
         }
         if detailTextLabel != nil {
-            constraints.extend(constraintsForView(detailTextLabel))
+            constraints.extend(constraintsForView(detailTextLabel!))
         }
         constraints.append(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: contentView, attribute: NSLayoutAttribute.Height, multiplier: 0, constant: 44))
         contentView.addConstraints(constraints)
