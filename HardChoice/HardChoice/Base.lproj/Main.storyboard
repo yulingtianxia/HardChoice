@@ -62,7 +62,7 @@
             </objects>
             <point key="canvasLocation" x="1134.375" y="80"/>
         </scene>
-        <!--Shake Your iPhone to Choose-->
+        <!--Shake Your iPhone-->
         <scene sceneID="cZh-Q3-4Dq">
             <objects>
                 <tableViewController id="mKe-7m-wwt" customClass="DetailViewController" customModule="HardChoice" customModuleProvider="target" sceneMemberID="viewController">
@@ -101,7 +101,7 @@
                             <outlet property="delegate" destination="mKe-7m-wwt" id="9z2-rM-pAW"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Shake Your iPhone to Choose" id="cyx-Px-eR1">
+                    <navigationItem key="navigationItem" title="Shake Your iPhone" id="cyx-Px-eR1">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2ij-zL-YRS">
                             <connections>
                                 <action selector="insertNewObject:" destination="mKe-7m-wwt" id="a9x-Zt-WlJ"/>

@@ -40,32 +40,30 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             for object : AnyObject in arr{
                 sum+=(object as Choice).weight.integerValue
             }
-            for var i:UInt32=0;i<=UInt32(sum);i++ {
-                if sum>0{
-                    var lucknum = arc4random()%UInt32(sum)+1
-                    var num = 0
-                    var n:UInt32 = 0
-                    while lucknum>0{
-                        n = UInt32((arr[num] as Choice).weight.integerValue)
-                        if lucknum <= n{
+            if sum>0{
+                var lucknum = arc4random()%UInt32(sum)+1
+                var num = 0
+                var n:UInt32 = 0
+                while lucknum>0{
+                    n = UInt32((arr[num] as Choice).weight.integerValue)
+                    if lucknum <= n{
+                        break
+                    }
+                    else{
+                        lucknum-=n
+                        num++
+                        if num>=count{
+                            num--
                             break
                         }
-                        else{
-                            lucknum-=n
-                            num++
-                            if num>=count{
-                                num--
-                                break
-                            }
-                        }
                     }
-                    var alertView = UIAlertView()
-                    alertView.alertViewStyle = .Default
-                    alertView.title = "恭喜"
-                    alertView.message = "\(detailItem!.content)的答案是：\n\((arr[num] as Choice).name)"
-                    alertView.addButtonWithTitle("OK")
-//                    alertView.show()
                 }
+                var alertView = UIAlertView()
+                alertView.alertViewStyle = .Default
+                alertView.title = "Congratulations"
+                alertView.message = "Answer for '\(detailItem!.content)' is \n\((arr[num] as Choice).name)"
+                alertView.addButtonWithTitle("OK")
+                alertView.show()
             }
             
             
