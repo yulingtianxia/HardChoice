@@ -8,42 +8,23 @@
 
 import UIKit
 
-class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,CustomIOS7AlertViewDelegate,UITextFieldDelegate{
+class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,UITextFieldDelegate{
     
     var managedObjectContext: NSManagedObjectContext? = nil
-    var addAV = CustomIOS7AlertView()
-    var modifyAV = CustomIOS7AlertView()
     var selectedIndexPath:NSIndexPath!
     var detailItem: Question? {
         didSet {
             // Update the view.
-            self.configureView()
-        }
-    }
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail: Question = self.detailItem {
-            let container = ChoiceView(frame:CGRectMake(0,0,290,100))
-            container.setDelegate(self)
             
-            addAV.containerView = container
-            addAV.buttonTitles = ["OK","Cancel"]
-            addAV.delegate = self
-            addAV.useMotionEffects = true
-            modifyAV.containerView = container
-            modifyAV.buttonTitles = ["OK","Cancel"]
-            modifyAV.delegate = self
-            modifyAV.useMotionEffects = true
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -59,48 +40,50 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             for object : AnyObject in arr{
                 sum+=(object as Choice).weight.integerValue
             }
-            if sum>0{
-                var lucknum = arc4random()%UInt32(sum)
-//                println("\(lucknum)")
-                var num = 0
-                var n:UInt32 = 0
-                while lucknum>0{
-                    if lucknum <= n{
-                        break
-                    }
-                    else{
-                        num++
-                        lucknum-=n
-                        if num>=count{
+            for var i:UInt32=0;i<=UInt32(sum);i++ {
+                if sum>0{
+                    var lucknum = arc4random()%UInt32(sum)+1
+                    var num = 0
+                    var n:UInt32 = 0
+                    while lucknum>0{
+                        n = UInt32((arr[num] as Choice).weight.integerValue)
+                        if lucknum <= n{
                             break
                         }
-                        n = UInt32((arr[num] as Choice).weight.integerValue)
+                        else{
+                            lucknum-=n
+                            num++
+                            if num>=count{
+                                num--
+                                break
+                            }
+                        }
                     }
+                    var alertView = UIAlertView()
+                    alertView.alertViewStyle = .Default
+                    alertView.title = "恭喜"
+                    alertView.message = "\(detailItem!.content)的答案是：\n\((arr[num] as Choice).name)"
+                    alertView.addButtonWithTitle("OK")
+//                    alertView.show()
                 }
-//                println("\(num)")
-                var alertView = UIAlertView()
-                alertView.alertViewStyle = .Default
-                alertView.title = "恭喜"
-                alertView.message = "\(detailItem!.content)的答案是：\n\((arr[num] as Choice).name)"
-                alertView.addButtonWithTitle("OK")
-                alertView.show()
             }
+            
             
         }
     }
     @IBAction func insertNewObject(sender: AnyObject) {
-        addAV.show()
+        showEditAlertWithInsert(true)
     }
     
-//    // #pragma mark - Segues
-//    
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        if segue.identifier == "showDetail" {
-//            let indexPath = self.tableView.indexPathForSelectedRow()
-//            let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
-//            (segue.destinationViewController as DetailViewController).detailItem = object
-//        }
-//    }
+    //    // #pragma mark - Segues
+    //
+    //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    //        if segue.identifier == "showDetail" {
+    //            let indexPath = self.tableView.indexPathForSelectedRow()
+    //            let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
+    //            (segue.destinationViewController as DetailViewController).detailItem = object
+    //        }
+    //    }
     
     // #pragma mark - Table View
     
@@ -126,10 +109,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         selectedIndexPath = indexPath
-        let choice = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
-        (modifyAV.containerView as ChoiceView).nameTF.text = choice.name
-        (modifyAV.containerView as ChoiceView).weightTF.text = "\(choice.weight)"
-        modifyAV.show()
+        showEditAlertWithInsert(false)
     }
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -156,40 +136,40 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     // #pragma mark - Fetched results controller
     
     var fetchedResultsController: NSFetchedResultsController {
-    if _fetchedResultsController != nil {
-        return _fetchedResultsController!
-        }
-        
-        let fetchRequest = NSFetchRequest()
-        // Edit the entity name as appropriate.
-        let entity = NSEntityDescription.entityForName("Choice", inManagedObjectContext: self.managedObjectContext!)
-        fetchRequest.entity = entity
-
-        fetchRequest.predicate = NSPredicate(format:"question.content='\(detailItem!.content)'")
-        
-        // Set the batch size to a suitable number.
-        fetchRequest.fetchBatchSize = 20
-        
-        // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        
-        // Edit the section name key path and cache name if appropriate.
-        // nil for section name key path means "no sections".
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
-        aFetchedResultsController.delegate = self
-        _fetchedResultsController = aFetchedResultsController
-        
-        var error: NSError? = nil
-        if !_fetchedResultsController!.performFetch(&error) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//            println("Unresolved error \(error!), \(error!.userInfo)")
-            abort()
-        }
-        
-        return _fetchedResultsController!
+        if _fetchedResultsController != nil {
+            return _fetchedResultsController!
+            }
+            
+            let fetchRequest = NSFetchRequest()
+            // Edit the entity name as appropriate.
+            let entity = NSEntityDescription.entityForName("Choice", inManagedObjectContext: self.managedObjectContext!)
+            fetchRequest.entity = entity
+            
+            fetchRequest.predicate = NSPredicate(format:"question.content='\(detailItem!.content)'")
+            
+            // Set the batch size to a suitable number.
+            fetchRequest.fetchBatchSize = 20
+            
+            // Edit the sort key as appropriate.
+            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            
+            // Edit the section name key path and cache name if appropriate.
+            // nil for section name key path means "no sections".
+            let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
+            aFetchedResultsController.delegate = self
+            _fetchedResultsController = aFetchedResultsController
+            
+            var error: NSError? = nil
+            if !_fetchedResultsController!.performFetch(&error) {
+                // Replace this implementation with code to handle the error appropriately.
+                // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                //            println("Unresolved error \(error!), \(error!.userInfo)")
+                abort()
+            }
+            
+            return _fetchedResultsController!
     }
     var _fetchedResultsController: NSFetchedResultsController? = nil
     
@@ -228,75 +208,80 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         self.tableView.endUpdates()
     }
     
-    // #pragma mark CustomIOS7AlertViewDelegate
+    // #pragma mark UITextFieldDelegate
     
-    func customIOS7dialogButtonTouchUpInside(alertView:AnyObject!, clickedButtonAtIndex buttonIndex:Int){
-        switch buttonIndex{
-        case 0:
+    func textFieldDidBeginEditing(textField: UITextField!){
+        
+    }
+    
+    func textFieldShouldEndEditing(textField: UITextField!) -> Bool{
+        textField.resignFirstResponder();
+        return true
+    }
+    
+    func showEditAlertWithInsert(isNew:Bool){
+        let title = "Enter Choices of the Trouble"
+        let message = detailItem?.content
+        let okbtn = "OK"
+        let cancelbtn = "Cancel"
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: okbtn, style: UIAlertActionStyle.Destructive) { [unowned self](action) -> Void in
             let context = self.fetchedResultsController.managedObjectContext
             let entity = self.fetchedResultsController.fetchRequest.entity
             var newManagedObject:Choice!
-            let av = alertView as CustomIOS7AlertView
-            if addAV == av{
+            if isNew{
                 newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Choice
             }
-            if modifyAV == av{
-                newManagedObject = self.fetchedResultsController.objectAtIndexPath(selectedIndexPath) as Choice
+            else{
+                newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Choice
             }
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
             
-            newManagedObject.name = (av.containerView as ChoiceView).nameTF.text
-            
-            
-            if let weight = (av.containerView as ChoiceView).weightTF.text.toInt()?{
+            newManagedObject.name = (alert.textFields?.first as UITextField).text
+            if let weight = (alert.textFields?[1] as UITextField).text.toInt()?{
                 newManagedObject.weight = weight
             }
-            
-            detailItem!.addChoicesObject(newManagedObject)
-            
+            self.detailItem!.addChoicesObject(newManagedObject)
             // Save the context.
             var error: NSError? = nil
             if !context.save(&error) {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                println("Unresolved error \(error!), \(error!.userInfo)")
-//                abort()
+                //println("Unresolved error \(error), \(error.userInfo)")
+                abort()
+                
             }
-            alertView.close()
-        default:
-            alertView.close()
         }
-        self.configureView()
-    }
-    
-    
-    // #pragma mark UITextFieldDelegate
-    
-    func textFieldDidBeginEditing(textField: UITextField!){
-        let animationDuration:NSTimeInterval  = 0.30
-        var frame = self.view.frame;
-        frame.origin.y-=116
-        frame.size.height+=116
-        self.view.frame = frame;
-        UIView.animateWithDuration(animationDuration){
-            self.view.frame = frame;
+        let cancelAction = UIAlertAction(title: cancelbtn, style: .Cancel) { (action) -> Void in
+            
         }
-    }
-    
-    func textFieldShouldEndEditing(textField: UITextField!) -> Bool{
-        let animationDuration:NSTimeInterval  = 0.30
-        var frame = self.view.frame;
-        frame.origin.y+=116;
-        frame.size.height-=116;
-        self.view.frame = frame;
-        //self.view移回原位置
-        UIView.animateWithDuration(animationDuration){
-            self.view.frame = frame;
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        alert.addTextFieldWithConfigurationHandler { (choiceNameTF) -> Void in
+            if !isNew {
+                let choice = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Choice
+                choiceNameTF.text = choice.name
+            }
+            choiceNameTF.borderStyle = .None
+            choiceNameTF.placeholder = "An answer of your trouble"
+            choiceNameTF.delegate = self
+            choiceNameTF.becomeFirstResponder()
+            
         }
-        textField.resignFirstResponder();
-        return true
+        alert.addTextFieldWithConfigurationHandler { (choiceWeightTF) -> Void in
+            if !isNew {
+                let choice = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Choice
+                choiceWeightTF.text = "\(choice.weight)"
+            }
+            choiceWeightTF.borderStyle = .None
+            choiceWeightTF.keyboardType = .NumberPad
+            choiceWeightTF.placeholder = "Weight can only be an integer"
+            choiceWeightTF.delegate = self
+            
+        }
+        self.presentViewController(alert, animated: true, completion: nil)
     }
-
 }
 

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A46D15811963F5C70093AE53 /* ChoiceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A46D15801963F5C70093AE53 /* ChoiceView.swift */; };
+		A401F6D719D95DAC007115B5 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A401F6D619D95DAC007115B5 /* Launch Screen.xib */; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
@@ -18,7 +18,6 @@
 		A48128391962A39F0048AB6C /* HardChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128381962A39F0048AB6C /* HardChoiceTests.swift */; };
 		A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F41963D69D00CE2B8B /* Choice.m */; };
 		A4CEA7F81963D69E00CE2B8B /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F71963D69E00CE2B8B /* Question.m */; };
-		A4CEA7FC1963D79200CE2B8B /* CustomIOS7AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7FB1963D79200CE2B8B /* CustomIOS7AlertView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A46D15801963F5C70093AE53 /* ChoiceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceView.swift; sourceTree = "<group>"; };
+		A401F6D619D95DAC007115B5 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
 		A481281B1962A39F0048AB6C /* HardChoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HardChoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A481281F1962A39F0048AB6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,8 +62,6 @@
 		A4CEA7F41963D69D00CE2B8B /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
 		A4CEA7F61963D69E00CE2B8B /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		A4CEA7F71963D69E00CE2B8B /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
-		A4CEA7FA1963D79200CE2B8B /* CustomIOS7AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomIOS7AlertView.h; sourceTree = "<group>"; };
-		A4CEA7FB1963D79200CE2B8B /* CustomIOS7AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomIOS7AlertView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +88,7 @@
 				A481281D1962A39F0048AB6C /* HardChoice */,
 				A48128351962A39F0048AB6C /* HardChoiceTests */,
 				A481281C1962A39F0048AB6C /* Products */,
+				DD80FC3B4E004CB5B1C4AC49 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -116,6 +114,7 @@
 				A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */,
 				A481281E1962A39F0048AB6C /* Supporting Files */,
 				A48128421962B2EA0048AB6C /* HardChoice-Bridging-Header.h */,
+				A401F6D619D95DAC007115B5 /* Launch Screen.xib */,
 			);
 			path = HardChoice;
 			sourceTree = "<group>";
@@ -148,9 +147,6 @@
 		A4CEA7F91963D77D00CE2B8B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A4CEA7FA1963D79200CE2B8B /* CustomIOS7AlertView.h */,
-				A4CEA7FB1963D79200CE2B8B /* CustomIOS7AlertView.m */,
-				A46D15801963F5C70093AE53 /* ChoiceView.swift */,
 				A474C91F19A0854A00262645 /* DynamicCell.swift */,
 			);
 			name = View;
@@ -165,6 +161,13 @@
 				A4CEA7F41963D69D00CE2B8B /* Choice.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		DD80FC3B4E004CB5B1C4AC49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +253,7 @@
 			files = (
 				A481282B1962A39F0048AB6C /* Main.storyboard in Resources */,
 				A481282D1962A39F0048AB6C /* Images.xcassets in Resources */,
+				A401F6D719D95DAC007115B5 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,12 +273,10 @@
 			files = (
 				A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */,
 				A474C92019A0854A00262645 /* DynamicCell.swift in Sources */,
-				A46D15811963F5C70093AE53 /* ChoiceView.swift in Sources */,
 				A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */,
 				A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */,
 				A4CEA7F81963D69E00CE2B8B /* Question.m in Sources */,
 				A48128261962A39F0048AB6C /* MasterViewController.swift in Sources */,
-				A4CEA7FC1963D79200CE2B8B /* CustomIOS7AlertView.m in Sources */,
 				A48128281962A39F0048AB6C /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
