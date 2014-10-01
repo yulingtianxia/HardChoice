@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A401F6D719D95DAC007115B5 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A401F6D619D95DAC007115B5 /* Launch Screen.xib */; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
@@ -16,6 +15,10 @@
 		A481282B1962A39F0048AB6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A48128291962A39F0048AB6C /* Main.storyboard */; };
 		A481282D1962A39F0048AB6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A481282C1962A39F0048AB6C /* Images.xcassets */; };
 		A48128391962A39F0048AB6C /* HardChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128381962A39F0048AB6C /* HardChoiceTests.swift */; };
+		A4BACB0D19DC0BAA008FA8A7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB0C19DC0BAA008FA8A7 /* Info.plist */; };
+		A4BACB1019DC0E6D008FA8A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */; };
+		A4BACB2519DC13BD008FA8A7 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB2419DC13BD008FA8A7 /* Launch Screen.xib */; };
+		A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4C17F3919DBF84A001296E5 /* Localizable.strings */; };
 		A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F41963D69D00CE2B8B /* Choice.m */; };
 		A4CEA7F81963D69E00CE2B8B /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F71963D69E00CE2B8B /* Question.m */; };
 /* End PBXBuildFile section */
@@ -44,10 +47,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A401F6D619D95DAC007115B5 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
 		A481281B1962A39F0048AB6C /* HardChoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HardChoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A481281F1962A39F0048AB6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A48128201962A39F0048AB6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A48128231962A39F0048AB6C /* HardChoice.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HardChoice.xcdatamodel; sourceTree = "<group>"; };
 		A48128251962A39F0048AB6C /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +59,14 @@
 		A48128371962A39F0048AB6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A48128381962A39F0048AB6C /* HardChoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardChoiceTests.swift; sourceTree = "<group>"; };
 		A48128421962B2EA0048AB6C /* HardChoice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HardChoice-Bridging-Header.h"; sourceTree = "<group>"; };
+		A4BACB0C19DC0BAA008FA8A7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4BACB1119DC0E6D008FA8A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A4BACB1319DC0E6E008FA8A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A4BACB1419DC0E6F008FA8A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A4BACB2419DC13BD008FA8A7 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
+		A4C17F3319DBF54B001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		A4C17F3419DBF665001296E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		A4C17F3819DBF84A001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A4CEA7F31963D69D00CE2B8B /* Choice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Choice.h; sourceTree = "<group>"; };
 		A4CEA7F41963D69D00CE2B8B /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
 		A4CEA7F61963D69E00CE2B8B /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
@@ -112,9 +121,10 @@
 				A48128291962A39F0048AB6C /* Main.storyboard */,
 				A481282C1962A39F0048AB6C /* Images.xcassets */,
 				A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */,
+				A4BACB2419DC13BD008FA8A7 /* Launch Screen.xib */,
 				A481281E1962A39F0048AB6C /* Supporting Files */,
 				A48128421962B2EA0048AB6C /* HardChoice-Bridging-Header.h */,
-				A401F6D619D95DAC007115B5 /* Launch Screen.xib */,
+				A4C17F3919DBF84A001296E5 /* Localizable.strings */,
 			);
 			path = HardChoice;
 			sourceTree = "<group>";
@@ -122,7 +132,8 @@
 		A481281E1962A39F0048AB6C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A481281F1962A39F0048AB6C /* Info.plist */,
+				A4BACB0C19DC0BAA008FA8A7 /* Info.plist */,
+				A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -234,6 +245,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = A48128121962A39F0048AB6C;
 			productRefGroup = A481281C1962A39F0048AB6C /* Products */;
@@ -252,8 +264,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				A481282B1962A39F0048AB6C /* Main.storyboard in Resources */,
+				A4BACB1019DC0E6D008FA8A7 /* InfoPlist.strings in Resources */,
+				A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */,
+				A4BACB0D19DC0BAA008FA8A7 /* Info.plist in Resources */,
 				A481282D1962A39F0048AB6C /* Images.xcassets in Resources */,
-				A401F6D719D95DAC007115B5 /* Launch Screen.xib in Resources */,
+				A4BACB2519DC13BD008FA8A7 /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,8 +319,28 @@
 			isa = PBXVariantGroup;
 			children = (
 				A481282A1962A39F0048AB6C /* Base */,
+				A4C17F3319DBF54B001296E5 /* zh-Hans */,
+				A4C17F3419DBF665001296E5 /* en */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4BACB1119DC0E6D008FA8A7 /* Base */,
+				A4BACB1319DC0E6E008FA8A7 /* zh-Hans */,
+				A4BACB1419DC0E6F008FA8A7 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A4C17F3919DBF84A001296E5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4C17F3819DBF84A001296E5 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

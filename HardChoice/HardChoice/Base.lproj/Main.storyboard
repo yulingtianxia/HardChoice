@@ -19,10 +19,10 @@
             </objects>
             <point key="canvasLocation" x="-1.875" y="80"/>
         </scene>
-        <!--Master-->
+        <!--Trouble List-->
         <scene sceneID="VgW-fR-Quf">
             <objects>
-                <tableViewController title="Master" id="pGg-6v-bdr" customClass="MasterViewController" customModule="HardChoice" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Trouble List" id="pGg-6v-bdr" customClass="MasterViewController" customModule="HardChoice" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mLL-gJ-YKr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

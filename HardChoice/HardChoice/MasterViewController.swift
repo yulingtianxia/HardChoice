@@ -195,10 +195,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     */
     func showEditAlertWithInsert(isNew:Bool){
-        let title = "Please Enter Your Trouble"
-        let message = "Don't write too long :)"
-        let okbtn = "OK"
-        let cancelbtn = "Cancel"
+        let title = NSLocalizedString("Please Enter Your Trouble",comment:"")
+        let message = NSLocalizedString("Don't write too long😊",comment:"")
+        let okbtn = NSLocalizedString("OK",comment:"")
+        let cancelbtn = NSLocalizedString("Cancel",comment:"")
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
         let okAction = UIAlertAction(title: okbtn, style: UIAlertActionStyle.Destructive) { [unowned self](action) -> Void in
@@ -236,7 +236,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
                 let question = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Question
                 questionNameTF.text = question.content
             }
-            questionNameTF.placeholder = "Write your trouble here"
+            questionNameTF.placeholder = NSLocalizedString("Write your trouble here",comment:"")
             questionNameTF.delegate = self
             questionNameTF.becomeFirstResponder()
             

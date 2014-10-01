@@ -60,8 +60,8 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                 }
                 var alertView = UIAlertView()
                 alertView.alertViewStyle = .Default
-                alertView.title = "Congratulations"
-                alertView.message = "Answer for '\(detailItem!.content)' is \n\((arr[num] as Choice).name)"
+                alertView.title = NSLocalizedString("Congratulations",comment:"")
+                alertView.message = (arr[num] as Choice).name
                 alertView.addButtonWithTitle("OK")
                 alertView.show()
             }
@@ -218,13 +218,13 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func showEditAlertWithInsert(isNew:Bool){
-        let title = "Enter Choices of the Trouble"
+        let title = NSLocalizedString("Enter Choices of the Trouble",comment:"")
         let message = detailItem?.content
-        let okbtn = "OK"
-        let cancelbtn = "Cancel"
+        let okbtn = NSLocalizedString("OK",comment:"")
+        let cancelbtn = NSLocalizedString("Cancel",comment:"")
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        let okAction = UIAlertAction(title: okbtn, style: UIAlertActionStyle.Destructive) { [unowned self](action) -> Void in
+        let okAction = UIAlertAction(title: okbtn, style: .Destructive) { [unowned self](action) -> Void in
             let context = self.fetchedResultsController.managedObjectContext
             let entity = self.fetchedResultsController.fetchRequest.entity
             var newManagedObject:Choice!
@@ -263,7 +263,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                 choiceNameTF.text = choice.name
             }
             choiceNameTF.borderStyle = .None
-            choiceNameTF.placeholder = "An answer of your trouble"
+            choiceNameTF.placeholder = NSLocalizedString("An answer of your trouble",comment:"")
             choiceNameTF.delegate = self
             choiceNameTF.becomeFirstResponder()
             
@@ -275,7 +275,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             }
             choiceWeightTF.borderStyle = .None
             choiceWeightTF.keyboardType = .NumberPad
-            choiceWeightTF.placeholder = "Weight can only be an integer"
+            choiceWeightTF.placeholder = NSLocalizedString("Weight can only be an integer",comment:"")
             choiceWeightTF.delegate = self
             
         }

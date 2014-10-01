@@ -1,0 +1,18 @@
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "0Dl-6b-KYt"; */
+"0Dl-6b-KYt.text" = "Title";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "GRD-a4-WsG"; */
+"GRD-a4-WsG.text" = "Title";
+
+/* Class = "IBUINavigationItem"; title = "Shake Your iPhone"; ObjectID = "cyx-Px-eR1"; */
+"cyx-Px-eR1.title" = "摇一摇你的iPhone";
+
+/* Class = "IBUILabel"; text = "Detail"; ObjectID = "hyI-WT-RRd"; */
+"hyI-WT-RRd.text" = "Detail";
+
+/* Class = "IBUITableViewController"; title = "Master"; ObjectID = "pGg-6v-bdr"; */
+"pGg-6v-bdr.title" = "Master";
+
+/* Class = "IBUINavigationItem"; title = "Trouble List"; ObjectID = "tQt-TN-PWz"; */
+"tQt-TN-PWz.title" = "难题清单";

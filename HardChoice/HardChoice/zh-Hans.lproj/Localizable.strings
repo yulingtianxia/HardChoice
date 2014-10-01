@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  HardChoice
+
+  Created by 杨萧玉 on 14-10-1.
+  Copyright (c) 2014年 杨萧玉. All rights reserved.
+*/
+
+"Please Enter Your Trouble"="请输入你纠结的问题";
+"Don't write too long😊"="问题不能太长哦😊";
+"OK"="好";
+"Cancel"="取消";
+"Write your trouble here"="在这写下你的忧虑吧";
+"Congratulations"="恭喜";
+"Enter Choices of the Trouble"="输入问题的备选答案";
+"An answer of your trouble"="问题的一个备选答案";
+"Weight can only be an integer"="权重只能是整数";
