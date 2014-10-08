@@ -17,10 +17,10 @@
 		A48128391962A39F0048AB6C /* HardChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128381962A39F0048AB6C /* HardChoiceTests.swift */; };
 		A4BACB0D19DC0BAA008FA8A7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB0C19DC0BAA008FA8A7 /* Info.plist */; };
 		A4BACB1019DC0E6D008FA8A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */; };
-		A4BACB2519DC13BD008FA8A7 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB2419DC13BD008FA8A7 /* Launch Screen.xib */; };
 		A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4C17F3919DBF84A001296E5 /* Localizable.strings */; };
 		A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F41963D69D00CE2B8B /* Choice.m */; };
 		A4CEA7F81963D69E00CE2B8B /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F71963D69E00CE2B8B /* Question.m */; };
+		A4F92B8A19DCF75700C87D0E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F92B8C19DCF75700C87D0E /* Launch Screen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,6 @@
 		A4BACB1119DC0E6D008FA8A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A4BACB1319DC0E6E008FA8A7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		A4BACB1419DC0E6F008FA8A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A4BACB2419DC13BD008FA8A7 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		A4C17F3319DBF54B001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		A4C17F3419DBF665001296E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		A4C17F3819DBF84A001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -71,6 +70,9 @@
 		A4CEA7F41963D69D00CE2B8B /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
 		A4CEA7F61963D69E00CE2B8B /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		A4CEA7F71963D69E00CE2B8B /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		A4F92B8B19DCF75700C87D0E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
+		A4F92B8F19DCF85200C87D0E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
+		A4F92B9019DCF87800C87D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Base.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +123,7 @@
 				A48128291962A39F0048AB6C /* Main.storyboard */,
 				A481282C1962A39F0048AB6C /* Images.xcassets */,
 				A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */,
-				A4BACB2419DC13BD008FA8A7 /* Launch Screen.xib */,
+				A4F92B8C19DCF75700C87D0E /* Launch Screen.xib */,
 				A481281E1962A39F0048AB6C /* Supporting Files */,
 				A48128421962B2EA0048AB6C /* HardChoice-Bridging-Header.h */,
 				A4C17F3919DBF84A001296E5 /* Localizable.strings */,
@@ -268,7 +270,7 @@
 				A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */,
 				A4BACB0D19DC0BAA008FA8A7 /* Info.plist in Resources */,
 				A481282D1962A39F0048AB6C /* Images.xcassets in Resources */,
-				A4BACB2519DC13BD008FA8A7 /* Launch Screen.xib in Resources */,
+				A4F92B8A19DCF75700C87D0E /* Launch Screen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +343,16 @@
 				A4C17F3819DBF84A001296E5 /* zh-Hans */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		A4F92B8C19DCF75700C87D0E /* Launch Screen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A4F92B8B19DCF75700C87D0E /* en */,
+				A4F92B8F19DCF85200C87D0E /* zh-Hans */,
+				A4F92B9019DCF87800C87D0E /* Base */,
+			);
+			name = "Launch Screen.xib";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
