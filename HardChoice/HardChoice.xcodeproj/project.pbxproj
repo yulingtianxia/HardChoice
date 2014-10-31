@@ -15,7 +15,6 @@
 		A481282B1962A39F0048AB6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A48128291962A39F0048AB6C /* Main.storyboard */; };
 		A481282D1962A39F0048AB6C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A481282C1962A39F0048AB6C /* Images.xcassets */; };
 		A48128391962A39F0048AB6C /* HardChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128381962A39F0048AB6C /* HardChoiceTests.swift */; };
-		A4BACB0D19DC0BAA008FA8A7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB0C19DC0BAA008FA8A7 /* Info.plist */; };
 		A4BACB1019DC0E6D008FA8A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */; };
 		A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4C17F3919DBF84A001296E5 /* Localizable.strings */; };
 		A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F41963D69D00CE2B8B /* Choice.m */; };
@@ -228,7 +227,7 @@
 		A48128131962A39F0048AB6C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "杨萧玉";
 				TargetAttributes = {
 					A481281A1962A39F0048AB6C = {
@@ -268,7 +267,6 @@
 				A481282B1962A39F0048AB6C /* Main.storyboard in Resources */,
 				A4BACB1019DC0E6D008FA8A7 /* InfoPlist.strings in Resources */,
 				A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */,
-				A4BACB0D19DC0BAA008FA8A7 /* Info.plist in Resources */,
 				A481282D1962A39F0048AB6C /* Images.xcassets in Resources */,
 				A4F92B8A19DCF75700C87D0E /* Launch Screen.xib in Resources */,
 			);

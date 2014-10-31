@@ -8,25 +8,37 @@
 
 import UIKit
 
+
 class DynamicCell: UITableViewCell {
 
     required init(coder: NSCoder) {
         super.init(coder: coder)
-        if textLabel != nil {
-            textLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-            textLabel!.numberOfLines = 0
+        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        textLabel.numberOfLines = 0
+        
+        if detailTextLabel != nil {
+            detailTextLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+            detailTextLabel!.numberOfLines = 0
         }
+        
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        textLabel.numberOfLines = 0
+        
         if detailTextLabel != nil {
             detailTextLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
             detailTextLabel!.numberOfLines = 0
         }
     }
-    
     override func constraints() -> [AnyObject] {
         var constraints = [AnyObject]()
-        if textLabel != nil {
-            constraints.extend(constraintsForView(textLabel!))
-        }
+        
+        constraints.extend(constraintsForView(textLabel))
+        
         if detailTextLabel != nil {
             constraints.extend(constraintsForView(detailTextLabel!))
         }
@@ -41,5 +53,5 @@ class DynamicCell: UITableViewCell {
         constraints.append(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: view, attribute: NSLayoutAttribute.Baseline, multiplier: 1.3, constant: 8))
         return constraints
     }
-    
+
 }

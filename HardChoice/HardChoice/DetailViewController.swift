@@ -127,7 +127,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
-        cell.textLabel!.text = object.name
+        cell.textLabel.text = object.name
         cell.detailTextLabel!.text = "\(object.weight)"
     }
     
@@ -229,7 +229,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             let entity = self.fetchedResultsController.fetchRequest.entity
             var newManagedObject:Choice!
             if isNew{
-                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Choice
+                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity!.name!, inManagedObjectContext: context) as Choice
             }
             else{
                 newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Choice

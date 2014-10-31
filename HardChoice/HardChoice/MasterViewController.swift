@@ -99,7 +99,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Question
-        cell.textLabel!.text = object.content
+        cell.textLabel.text = object.content
     }
     
     // #pragma mark - Fetched results controller
@@ -206,7 +206,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let entity = self.fetchedResultsController.fetchRequest.entity
             var newManagedObject:Question!
             if isNew{
-                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity.name, inManagedObjectContext: context) as Question
+                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity!.name!, inManagedObjectContext: context) as Question
             }
             else{
                 newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Question
