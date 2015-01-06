@@ -13,8 +13,8 @@ class DynamicCell: UITableViewCell {
 
     required init(coder: NSCoder) {
         super.init(coder: coder)
-        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        textLabel.numberOfLines = 0
+        textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        textLabel?.numberOfLines = 0
         
         if detailTextLabel != nil {
             detailTextLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
@@ -26,8 +26,8 @@ class DynamicCell: UITableViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        textLabel.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
-        textLabel.numberOfLines = 0
+        textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+        textLabel?.numberOfLines = 0
         
         if detailTextLabel != nil {
             detailTextLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
@@ -37,7 +37,7 @@ class DynamicCell: UITableViewCell {
     override func constraints() -> [AnyObject] {
         var constraints = [AnyObject]()
         
-        constraints.extend(constraintsForView(textLabel))
+        constraints.extend(constraintsForView(textLabel!))
         
         if detailTextLabel != nil {
             constraints.extend(constraintsForView(detailTextLabel!))

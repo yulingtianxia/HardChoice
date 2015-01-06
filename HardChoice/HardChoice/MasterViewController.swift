@@ -99,7 +99,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Question
-        cell.textLabel.text = object.content
+        cell.textLabel?.text = object.content
     }
     
     // #pragma mark - Fetched results controller

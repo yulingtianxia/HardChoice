@@ -127,7 +127,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
-        cell.textLabel.text = object.name
+        cell.textLabel!.text = object.name
         cell.detailTextLabel!.text = "\(object.weight)"
     }
     
