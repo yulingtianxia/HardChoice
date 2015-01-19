@@ -11,7 +11,7 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-                            
+
     var window: UIWindow?
 
 
@@ -19,7 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         let navigationController = self.window!.rootViewController as UINavigationController
         let controller = navigationController.topViewController as MasterViewController
-        controller.managedObjectContext = self.managedObjectContext
+        controller.managedObjectContext = managedObjectContext
+//        let containerURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.yulingtianxia.HardChoice")
+//        if containerURL != nil {
+//            println(containerURL)
+//        }
         return true
     }
 
@@ -68,8 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if _managedObjectContext == nil {
             let coordinator = self.persistentStoreCoordinator
             if coordinator != nil {
-                _managedObjectContext = NSManagedObjectContext()
-                _managedObjectContext!.persistentStoreCoordinator = coordinator
+                _managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+                _managedObjectContext?.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+                _managedObjectContext?.persistentStoreCoordinator = coordinator
             }
         }
         return _managedObjectContext!
@@ -94,31 +99,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let storeURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("HardChoice.sqlite")
             var error: NSError? = nil
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-            if _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error) == nil {
-                /*
-                Replace this implementation with code to handle the error appropriately.
+            
+            // iCloud notification subscriptions
+            let dc = NSNotificationCenter.defaultCenter()
+            dc.addObserverForName(NSPersistentStoreCoordinatorStoresWillChangeNotification, object: self.persistentStoreCoordinator, queue: NSOperationQueue.mainQueue(), usingBlock: { (note) -> Void in
+                self.managedObjectContext.performBlock({ () -> Void in
+                    var error: NSError? = nil
+                    if self.managedObjectContext.hasChanges {
+                        if !self.managedObjectContext.save(&error) {
+                            println(error?.description)
+                        }
+                    }
+                    self.managedObjectContext.reset()
+                })
+            })
+            dc.addObserverForName(NSPersistentStoreCoordinatorStoresDidChangeNotification, object: self.persistentStoreCoordinator, queue: NSOperationQueue.mainQueue(), usingBlock: { (note) -> Void in
+                self.managedObjectContext.performBlock({ () -> Void in
+                    var error: NSError? = nil
+                    if self.managedObjectContext.hasChanges {
+                        if !self.managedObjectContext.save(&error) {
+                            println(error?.description)
+                        }
+                    }
+                })
+            })
+            dc.addObserverForName(NSPersistentStoreDidImportUbiquitousContentChangesNotification, object: self.persistentStoreCoordinator, queue: NSOperationQueue.mainQueue(), usingBlock: { (note) -> Void in
+                self.managedObjectContext.performBlock({ () -> Void in
+                    self.managedObjectContext.mergeChangesFromContextDidSaveNotification(note)
+                })
+            })
+            
+            if _persistentStoreCoordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: [NSPersistentStoreUbiquitousContentNameKey:"MyAppCloudStore"], error: &error) == nil {
 
-                abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                Typical reasons for an error here include:
-                * The persistent store is not accessible;
-                * The schema for the persistent store is incompatible with current managed object model.
-                Check the error message to determine what the actual problem was.
-
-
-                If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
-
-                If you encounter schema incompatibility errors during development, you can reduce their frequency by:
-                * Simply deleting the existing store:
-                NSFileManager.defaultManager().removeItemAtURL(storeURL, error: nil)
-
-                * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
-                [NSMigratePersistentStoresAutomaticallyOption: true, NSInferMappingModelAutomaticallyOption: true}
-
-                Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
-
-                */
-                //println("Unresolved error \(error), \(error.userInfo)")
+                println("Unresolved error \(error), \(error?.userInfo)")
                 abort()
             }
         }
@@ -130,9 +143,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     
     // Returns the URL to the application's Documents directory.
     var applicationDocumentsDirectory: NSURL {
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        return urls[urls.endIndex-1] as NSURL
+        return NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil,
+            create: true,
+            error: nil)!
     }
-
+    
+    // Subscribe to NSPersistentStoreDidImportUbiquitousContentChangesNotification
+    func persistentStoreDidImportUbiquitousContentChanges(note:NSNotification){
+        println(note.userInfo?.description)
+        managedObjectContext.performBlock {
+            self.managedObjectContext.mergeChangesFromContextDidSaveNotification(note)
+            NSNotificationCenter.defaultCenter().postNotificationName("notifiCloudStoreDidChange", object: nil)
+            
+            /*
+            // you may want to post a notification here so that which ever part of your app
+            // needs to can react appropriately to what was merged.
+            // An exmaple of how to iterate over what was merged follows, although I wouldn't
+            // recommend doing it here. Better handle it in a delegate or use notifications.
+            // Note that the notification contains NSManagedObjectIDs
+            // and not NSManagedObjects.
+            NSDictionary *changes = note.userInfo;
+            NSMutableSet *allChanges = [NSMutableSet new];
+            [allChanges unionSet:changes[NSInsertedObjectsKey]];
+            [allChanges unionSet:changes[NSUpdatedObjectsKey]];
+            [allChanges unionSet:changes[NSDeletedObjectsKey]];
+            
+            for (NSManagedObjectID *objID in allChanges) {
+            // do whatever you need to with the NSManagedObjectID
+            // you can retrieve the object from with [moc objectWithID:objID]
+            }
+            */
+        }
+    }
+    
+    // Subscribe to NSPersistentStoreCoordinatorStoresWillChangeNotification
+    // most likely to be called if the user enables / disables iCloud
+    // (either globally, or just for your app) or if the user changes
+    // iCloud accounts.
+    
+    // Subscribe to NSPersistentStoreCoordinatorStoresDidChangeNotification
+    func storesDidChange(note:NSNotification){
+        // here is when you can refresh your UI and
+        // load new data from the new store
+        println("storeDidChange")
+        NSNotificationCenter.defaultCenter().postNotificationName("notifiCloudStoreDidChange", object: nil)
+    }
 }
 

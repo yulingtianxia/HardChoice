@@ -9,7 +9,7 @@
 import UIKit
 
 class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,UITextFieldDelegate{
-    
+
     var managedObjectContext: NSManagedObjectContext? = nil
     var selectedIndexPath:NSIndexPath!
     var detailItem: Question? {
@@ -22,7 +22,9 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        tableView.tableFooterView = UIView()
+        navigationController?.hidesBarsOnSwipe = true
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -60), forBarMetrics: .Default)
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,7 +75,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         showEditAlertWithInsert(true)
     }
     
-    //    // #pragma mark - Segues
+    //  MARK: - Segues
     //
     //    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     //        if segue.identifier == "showDetail" {
@@ -83,7 +85,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     //        }
     //    }
     
-    // #pragma mark - Table View
+    // MARK: - Table View
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections!.count
@@ -124,14 +126,19 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             }
         }
     }
+    /**
+    configureCell
     
+    :param: cell      cell be configured
+    :param: indexPath Data with indexPath you want to configured
+    */
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
         cell.textLabel!.text = object.name
         cell.detailTextLabel!.text = "\(object.weight)"
     }
     
-    // #pragma mark - Fetched results controller
+    // MARK: - Fetched results controller
     
     var fetchedResultsController: NSFetchedResultsController {
         if _fetchedResultsController != nil {
@@ -174,7 +181,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
         self.tableView.beginUpdates()
     }
-    
+
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
         switch type {
         case .Insert:

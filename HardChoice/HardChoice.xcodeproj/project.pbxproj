@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A43B54D01A5AAB5100ACB30C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A43B54CF1A5AAB5100ACB30C /* CloudKit.framework */; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
@@ -18,8 +17,9 @@
 		A48128391962A39F0048AB6C /* HardChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128381962A39F0048AB6C /* HardChoiceTests.swift */; };
 		A4BACB1019DC0E6D008FA8A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */; };
 		A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4C17F3919DBF84A001296E5 /* Localizable.strings */; };
-		A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F41963D69D00CE2B8B /* Choice.m */; };
-		A4CEA7F81963D69E00CE2B8B /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4CEA7F71963D69E00CE2B8B /* Question.m */; };
+		A4D453881A5F83E300EE4F11 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4D453871A5F83E300EE4F11 /* CloudKit.framework */; };
+		A4EEC0041A669FA300A39FC3 /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
+		A4EEC0051A669FA300A39FC3 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
 		A4F92B8A19DCF75700C87D0E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F92B8C19DCF75700C87D0E /* Launch Screen.xib */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HardChoice.entitlements; sourceTree = "<group>"; };
-		A43B54CF1A5AAB5100ACB30C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
 		A481281B1962A39F0048AB6C /* HardChoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HardChoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48128201962A39F0048AB6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,10 +67,11 @@
 		A4C17F3319DBF54B001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		A4C17F3419DBF665001296E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		A4C17F3819DBF84A001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		A4CEA7F31963D69D00CE2B8B /* Choice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Choice.h; sourceTree = "<group>"; };
-		A4CEA7F41963D69D00CE2B8B /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
-		A4CEA7F61963D69E00CE2B8B /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
-		A4CEA7F71963D69E00CE2B8B /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		A4D453871A5F83E300EE4F11 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		A4EEC0001A669FA300A39FC3 /* Choice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Choice.h; sourceTree = "<group>"; };
+		A4EEC0011A669FA300A39FC3 /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
+		A4EEC0021A669FA300A39FC3 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
+		A4EEC0031A669FA300A39FC3 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		A4F92B8B19DCF75700C87D0E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
 		A4F92B8F19DCF85200C87D0E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
 		A4F92B9019DCF87800C87D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Base.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A43B54D01A5AAB5100ACB30C /* CloudKit.framework in Frameworks */,
+				A4D453881A5F83E300EE4F11 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,10 +172,10 @@
 		A4CEA7FD1963D7AC00CE2B8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A4CEA7F61963D69E00CE2B8B /* Question.h */,
-				A4CEA7F71963D69E00CE2B8B /* Question.m */,
-				A4CEA7F31963D69D00CE2B8B /* Choice.h */,
-				A4CEA7F41963D69D00CE2B8B /* Choice.m */,
+				A4EEC0001A669FA300A39FC3 /* Choice.h */,
+				A4EEC0011A669FA300A39FC3 /* Choice.m */,
+				A4EEC0021A669FA300A39FC3 /* Question.h */,
+				A4EEC0031A669FA300A39FC3 /* Question.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 		DD80FC3B4E004CB5B1C4AC49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A43B54CF1A5AAB5100ACB30C /* CloudKit.framework */,
+				A4D453871A5F83E300EE4F11 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -298,11 +298,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4CEA7F51963D69D00CE2B8B /* Choice.m in Sources */,
+				A4EEC0041A669FA300A39FC3 /* Choice.m in Sources */,
 				A474C92019A0854A00262645 /* DynamicCell.swift in Sources */,
 				A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */,
 				A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */,
-				A4CEA7F81963D69E00CE2B8B /* Question.m in Sources */,
+				A4EEC0051A669FA300A39FC3 /* Question.m in Sources */,
 				A48128261962A39F0048AB6C /* MasterViewController.swift in Sources */,
 				A48128281962A39F0048AB6C /* DetailViewController.swift in Sources */,
 			);

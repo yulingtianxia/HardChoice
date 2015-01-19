@@ -22,8 +22,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
-        self.tableView.estimatedRowHeight = 44
+        navigationItem.rightBarButtonItem = addButton
+        tableView.estimatedRowHeight = 44
+        tableView.tableFooterView = UIView()
+        navigationController?.hidesBarsOnSwipe = true
     }
     
     override func didReceiveMemoryWarning() {
