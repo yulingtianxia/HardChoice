@@ -24,7 +24,6 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         // Do any additional setup after loading the view, typically from a nib.
         tableView.tableFooterView = UIView()
         navigationController?.hidesBarsOnSwipe = true
-        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -60), forBarMetrics: .Default)
     }
     
     override func didReceiveMemoryWarning() {
@@ -108,6 +107,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         selectedIndexPath = indexPath
         showEditAlertWithInsert(false)
     }
