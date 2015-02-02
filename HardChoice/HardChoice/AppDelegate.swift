@@ -21,10 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = self.window!.rootViewController as UINavigationController
         let controller = navigationController.topViewController as MasterViewController
         controller.managedObjectContext = managedObjectContext
-//        let containerURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.yulingtianxia.HardChoice")
-//        if containerURL != nil {
-//            println(containerURL)
-//        }
+        let containerURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.yulingtianxia.HardChoice")
+        if containerURL != nil {
+            println("success:\(containerURL)")
+        }
+        else{
+            println("URL=nil")
+        }
         return true
     }
 
@@ -149,45 +152,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             error: nil)!
     }
     
-    // Subscribe to NSPersistentStoreDidImportUbiquitousContentChangesNotification
-    func persistentStoreDidImportUbiquitousContentChanges(note:NSNotification){
-        println(note.userInfo?.description)
-        managedObjectContext.performBlock {
-            self.managedObjectContext.mergeChangesFromContextDidSaveNotification(note)
-            NSNotificationCenter.defaultCenter().postNotificationName("notifiCloudStoreDidChange", object: nil)
-            
-            /*
-            // you may want to post a notification here so that which ever part of your app
-            // needs to can react appropriately to what was merged.
-            // An exmaple of how to iterate over what was merged follows, although I wouldn't
-            // recommend doing it here. Better handle it in a delegate or use notifications.
-            // Note that the notification contains NSManagedObjectIDs
-            // and not NSManagedObjects.
-            NSDictionary *changes = note.userInfo;
-            NSMutableSet *allChanges = [NSMutableSet new];
-            [allChanges unionSet:changes[NSInsertedObjectsKey]];
-            [allChanges unionSet:changes[NSUpdatedObjectsKey]];
-            [allChanges unionSet:changes[NSDeletedObjectsKey]];
-            
-            for (NSManagedObjectID *objID in allChanges) {
-            // do whatever you need to with the NSManagedObjectID
-            // you can retrieve the object from with [moc objectWithID:objID]
-            }
-            */
-        }
-    }
-    
-    // Subscribe to NSPersistentStoreCoordinatorStoresWillChangeNotification
-    // most likely to be called if the user enables / disables iCloud
-    // (either globally, or just for your app) or if the user changes
-    // iCloud accounts.
-    
-    // Subscribe to NSPersistentStoreCoordinatorStoresDidChangeNotification
-    func storesDidChange(note:NSNotification){
-        // here is when you can refresh your UI and
-        // load new data from the new store
-        println("storeDidChange")
-        NSNotificationCenter.defaultCenter().postNotificationName("notifiCloudStoreDidChange", object: nil)
-    }
 }
 

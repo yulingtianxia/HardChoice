@@ -75,7 +75,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        //        modifyObject(indexPath)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         selectedIndexPath = indexPath
     }
     
