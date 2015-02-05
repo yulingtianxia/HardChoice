@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,13 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = self.window!.rootViewController as UINavigationController
         let controller = navigationController.topViewController as MasterViewController
         controller.managedObjectContext = managedObjectContext
-        let containerURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.yulingtianxia.HardChoice")
-        if containerURL != nil {
-            println("success:\(containerURL)")
-        }
-        else{
-            println("URL=nil")
-        }
+//        let containerURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.yulingtianxia.HardChoice")
+//        if containerURL != nil {
+//            println("success:\(containerURL)")
+//        }
+//        else{
+//            println("URL=nil")
+//        }
+        Fabric.with([Crashlytics()])
         return true
     }
 

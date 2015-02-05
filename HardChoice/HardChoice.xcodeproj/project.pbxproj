@@ -17,6 +17,8 @@
 		A48128391962A39F0048AB6C /* HardChoiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128381962A39F0048AB6C /* HardChoiceTests.swift */; };
 		A4BACB1019DC0E6D008FA8A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */; };
 		A4C17F3719DBF84A001296E5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4C17F3919DBF84A001296E5 /* Localizable.strings */; };
+		A4DCE01B1A83927100EA39B1 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DCE0191A83927100EA39B1 /* Crashlytics.framework */; };
+		A4DCE01C1A83927100EA39B1 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4DCE01A1A83927100EA39B1 /* Fabric.framework */; };
 		A4EEC0041A669FA300A39FC3 /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
 		A4EEC0051A669FA300A39FC3 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
 		A4F92B8A19DCF75700C87D0E /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4F92B8C19DCF75700C87D0E /* Launch Screen.xib */; };
@@ -66,6 +68,8 @@
 		A4C17F3319DBF54B001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		A4C17F3419DBF665001296E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		A4C17F3819DBF84A001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		A4DCE0191A83927100EA39B1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		A4DCE01A1A83927100EA39B1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		A4EEC0001A669FA300A39FC3 /* Choice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Choice.h; sourceTree = "<group>"; };
 		A4EEC0011A669FA300A39FC3 /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
 		A4EEC0021A669FA300A39FC3 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4DCE01B1A83927100EA39B1 /* Crashlytics.framework in Frameworks */,
+				A4DCE01C1A83927100EA39B1 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +186,8 @@
 		DD80FC3B4E004CB5B1C4AC49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A4DCE0191A83927100EA39B1 /* Crashlytics.framework */,
+				A4DCE01A1A83927100EA39B1 /* Fabric.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,6 +203,7 @@
 				A48128181962A39F0048AB6C /* Frameworks */,
 				A48128191962A39F0048AB6C /* Resources */,
 				A45D3B78198E3C2C0018C72E /* Embed App Extensions */,
+				A4DCE0181A83916200EA39B1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -288,6 +297,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A4DCE0181A83916200EA39B1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 9f390390e312b5a6d8108a6d977e5b5425ef2da3 c3f24c2e2f19128e225aacae23e2fa2659ec714e7f411c46a14eca2577b9c550";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A48128171962A39F0048AB6C /* Sources */ = {
@@ -453,6 +478,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HardChoice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -472,6 +501,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = HardChoice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
