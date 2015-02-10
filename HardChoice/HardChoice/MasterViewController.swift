@@ -45,9 +45,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             let indexPath = self.tableView.indexPathForSelectedRow()
-            let object = self.fetchedResultsController.objectAtIndexPath(indexPath!) as Question
-            (segue.destinationViewController as DetailViewController).managedObjectContext = self.managedObjectContext
-            (segue.destinationViewController as DetailViewController).detailItem = object
+            let object = self.fetchedResultsController.objectAtIndexPath(indexPath!) as! Question
+            (segue.destinationViewController as! DetailViewController).managedObjectContext = self.managedObjectContext
+            (segue.destinationViewController as! DetailViewController).detailItem = object
             
         }
     }
@@ -59,12 +59,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("QuestionCell", forIndexPath: indexPath) as DynamicCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("QuestionCell", forIndexPath: indexPath) as! DynamicCell
         self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
@@ -87,7 +87,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
-            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject)
+            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
             
             var error: NSError? = nil
             if !context.save(&error) {
@@ -100,7 +100,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Question
+        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Question
         cell.textLabel?.text = object.content
     }
     
@@ -158,17 +158,17 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath) {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
-            self.configureCell(tableView.cellForRowAtIndexPath(indexPath) as DynamicCell, atIndexPath: indexPath)
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!) as! DynamicCell, atIndexPath: indexPath!)
         case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         default:
             return
         }
@@ -180,11 +180,11 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     // #pragma mark UITextFieldDelegate
     
-    func textFieldDidBeginEditing(textField: UITextField!){
-        
+    func textFieldDidBeginEditing(textField: UITextField){
+       
     }
     
-    func textFieldShouldEndEditing(textField: UITextField!) -> Bool{
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool{
         textField.resignFirstResponder();
         return true
     }
@@ -208,15 +208,15 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             let entity = self.fetchedResultsController.fetchRequest.entity
             var newManagedObject:Question!
             if isNew{
-                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity!.name!, inManagedObjectContext: context) as Question
+                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity!.name!, inManagedObjectContext: context) as! Question
             }
             else{
-                newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Question
+                newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as! Question
             }
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
             
-            newManagedObject.content = (alert.textFields?.first as UITextField).text
+            newManagedObject.content = (alert.textFields?.first as! UITextField).text
             
             // Save the context.
             var error: NSError? = nil
@@ -235,7 +235,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         alert.addAction(cancelAction)
         alert.addTextFieldWithConfigurationHandler { (questionNameTF) -> Void in
             if !isNew {
-                let question = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Question
+                let question = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as! Question
                 questionNameTF.text = question.content
             }
             questionNameTF.placeholder = NSLocalizedString("Write your trouble here",comment:"")

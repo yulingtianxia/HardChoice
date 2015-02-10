@@ -39,14 +39,14 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             var arr = fetchedResultsController.fetchedObjects!
             var sum:Int = 0
             for object : AnyObject in arr{
-                sum+=(object as Choice).weight.integerValue
+                sum+=(object as! Choice).weight.integerValue
             }
             if sum>0{
                 var lucknum = arc4random()%UInt32(sum)+1
                 var num = 0
                 var n:UInt32 = 0
                 while lucknum>0{
-                    n = UInt32((arr[num] as Choice).weight.integerValue)
+                    n = UInt32((arr[num] as! Choice).weight.integerValue)
                     if lucknum <= n{
                         break
                     }
@@ -62,7 +62,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                 var alertView = UIAlertView()
                 alertView.alertViewStyle = .Default
                 alertView.title = NSLocalizedString("Congratulations",comment:"")
-                alertView.message = (arr[num] as Choice).name
+                alertView.message = (arr[num] as! Choice).name
                 alertView.addButtonWithTitle("OK")
                 alertView.show()
             }
@@ -91,12 +91,12 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ChoiceCell", forIndexPath: indexPath) as DynamicCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ChoiceCell", forIndexPath: indexPath) as! DynamicCell
         self.configureCell(cell, atIndexPath: indexPath)
         return cell
     }
@@ -115,7 +115,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
-            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject)
+            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
             
             var error: NSError? = nil
             if !context.save(&error) {
@@ -133,7 +133,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     :param: indexPath Data with indexPath you want to configured
     */
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
-        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as Choice
+        let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Choice
         cell.textLabel!.text = object.name
         cell.detailTextLabel!.text = "\(object.weight)"
     }
@@ -193,17 +193,17 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath) {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
         case .Update:
-            self.configureCell(tableView.cellForRowAtIndexPath(indexPath) as DynamicCell, atIndexPath: indexPath)
+            self.configureCell(tableView.cellForRowAtIndexPath(indexPath!) as! DynamicCell, atIndexPath: indexPath!)
         case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Fade)
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         default:
             return
         }
@@ -215,11 +215,11 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     // #pragma mark UITextFieldDelegate
     
-    func textFieldDidBeginEditing(textField: UITextField!){
+    func textFieldDidBeginEditing(textField: UITextField){
         
     }
     
-    func textFieldShouldEndEditing(textField: UITextField!) -> Bool{
+    func textFieldShouldEndEditing(textField: UITextField) -> Bool{
         textField.resignFirstResponder();
         return true
     }
@@ -236,16 +236,16 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             let entity = self.fetchedResultsController.fetchRequest.entity
             var newManagedObject:Choice!
             if isNew{
-                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity!.name!, inManagedObjectContext: context) as Choice
+                newManagedObject = NSEntityDescription.insertNewObjectForEntityForName(entity!.name!, inManagedObjectContext: context) as! Choice
             }
             else{
-                newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Choice
+                newManagedObject = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as! Choice
             }
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
             
-            newManagedObject.name = (alert.textFields?.first as UITextField).text
-            if let weight = (alert.textFields?[1] as UITextField).text.toInt()?{
+            newManagedObject.name = (alert.textFields?.first as! UITextField).text
+            if let weight = (alert.textFields?[1] as! UITextField).text.toInt(){
                 newManagedObject.weight = weight
             }
             self.detailItem!.addChoicesObject(newManagedObject)
@@ -266,7 +266,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         alert.addAction(cancelAction)
         alert.addTextFieldWithConfigurationHandler { (choiceNameTF) -> Void in
             if !isNew {
-                let choice = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Choice
+                let choice = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as! Choice
                 choiceNameTF.text = choice.name
             }
             choiceNameTF.borderStyle = .None
@@ -277,7 +277,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         }
         alert.addTextFieldWithConfigurationHandler { (choiceWeightTF) -> Void in
             if !isNew {
-                let choice = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as Choice
+                let choice = self.fetchedResultsController.objectAtIndexPath(self.selectedIndexPath) as! Choice
                 choiceWeightTF.text = "\(choice.weight)"
             }
             choiceWeightTF.borderStyle = .None
