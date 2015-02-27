@@ -20,7 +20,6 @@ class DynamicCell: UITableViewCell {
             detailTextLabel!.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
             detailTextLabel!.numberOfLines = 0
         }
-        
     }
     
     override init(frame: CGRect) {

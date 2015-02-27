@@ -12,6 +12,7 @@ import CoreData
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate{
     var managedObjectContext: NSManagedObjectContext? = nil
     var selectedIndexPath:NSIndexPath!
+    var lastVisualRow = 0
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -27,6 +28,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         tableView.tableFooterView = UIView()
         navigationController?.hidesBarsOnSwipe = true
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -84,6 +86,38 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         modifyObject()
         
     }
+    
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        //1. Setup the CATransform3D structure
+        var rotation:CATransform3D
+        if lastVisualRow <= indexPath.row {//roll down
+            rotation = CATransform3DMakeRotation( CGFloat(90.0 * M_PI) / 180, CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+            rotation.m34 = 1.0 / -600
+        }
+        else{//roll up
+            rotation = CATransform3DMakeRotation( CGFloat(-90.0 * M_PI) / 180, CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+            rotation.m34 = 1.0 / 600
+        }
+        lastVisualRow = indexPath.row
+        
+        
+        //2. Define the initial state (Before the animation)
+        cell.layer.shadowColor = UIColor.blackColor().CGColor
+        cell.layer.shadowOffset = CGSizeMake(10, 10)
+        cell.alpha = 0
+        
+        cell.layer.transform = rotation
+        cell.layer.anchorPoint = CGPointMake(0, 0.5)
+        
+        
+        //3. Define the final state (After the animation) and commit the animation
+        UIView.animateWithDuration(0.8, animations: { () -> Void in
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1
+            cell.layer.shadowOffset = CGSizeMake(0, 0)
+        })
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
