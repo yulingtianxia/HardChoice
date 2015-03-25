@@ -22,8 +22,8 @@ class DynamicCell: UITableViewCell {
         }
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    convenience init(frame: CGRect) {
+        self.init(frame: frame)
         
         textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         textLabel?.numberOfLines = 0

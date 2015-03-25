@@ -90,13 +90,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         //1. Setup the CATransform3D structure
         var rotation:CATransform3D
-        if lastVisualRow <= indexPath.row {//roll down
-            rotation = CATransform3DMakeRotation( CGFloat(90.0 * M_PI) / 180, CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+        if lastVisualRow <= indexPath.row {//roll up
+            rotation = CATransform3DMakeRotation( CGFloat(M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
             rotation.m34 = 1.0 / -600
         }
-        else{//roll up
-            rotation = CATransform3DMakeRotation( CGFloat(-90.0 * M_PI) / 180, CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
-            rotation.m34 = 1.0 / 600
+        else{//roll down
+            rotation = CATransform3DMakeRotation( CGFloat(-M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+            rotation.m34 = 1.0 / -600
         }
         lastVisualRow = indexPath.row
         
