@@ -17,6 +17,7 @@ class NotificationController: WKUserNotificationInterfaceController {
         super.init()
         
         // Configure interface objects here.
+        
     }
 
     override func willActivate() {

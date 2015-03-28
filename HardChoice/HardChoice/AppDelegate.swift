@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import DataKit
 import Fabric
 import Crashlytics
 
@@ -22,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -60), forBarMetrics: .Default)
         let navigationController = self.window!.rootViewController as! UINavigationController
         let controller = navigationController.topViewController as! MasterViewController
-        controller.managedObjectContext = managedObjectContext
+//        controller.managedObjectContext = managedObjectContext
+        controller.managedObjectContext = DataAccess.sharedInstance.managedObjectContext
 //        let containerURL = NSFileManager.defaultManager().URLForUbiquityContainerIdentifier("iCloud.com.yulingtianxia.HardChoice")
 //        if containerURL != nil {
 //            println("success:\(containerURL)")
@@ -55,7 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+//        self.saveContext()
+        DataAccess.sharedInstance.saveContext()
     }
 
     func saveContext () {
@@ -71,7 +74,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-    // #pragma mark - Core Data stack
+    // MARK: - Core Data stack
 
     // Returns the managed object context for the application.
     // If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
@@ -103,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // If the coordinator doesn't already exist, it is created and the application's store added to it.
     var persistentStoreCoordinator: NSPersistentStoreCoordinator! {
         if _persistentStoreCoordinator == nil {
+            
             let storeURL = self.applicationDocumentsDirectory.URLByAppendingPathComponent("HardChoice.sqlite")
             var error: NSError? = nil
             _persistentStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
@@ -146,13 +150,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     var _persistentStoreCoordinator: NSPersistentStoreCoordinator? = nil
 
-    // #pragma mark - Application's Documents directory
+    // MARK: - Application's Documents directory
                                     
     // Returns the URL to the application's Documents directory.
     var applicationDocumentsDirectory: NSURL {
-        return NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil,
-            create: true,
-            error: nil)!
+//        return NSFileManager.defaultManager().URLForDirectory(.DocumentDirectory, inDomain: .UserDomainMask, appropriateForURL: nil,
+//            create: true,
+//            error: nil)!
+        let kMyAppGroupName = "group.com.yulingtianxia.HardChoice"
+        var sharedContainerURL:NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(kMyAppGroupName)
+        return sharedContainerURL ?? NSURL()
     }
     
 }

@@ -42,7 +42,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     func modifyObject(){
         showEditAlertWithInsert(false)
     }
-    // #pragma mark - Segues
+    // MARK: - Segues
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
@@ -54,7 +54,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    // #pragma mark - Table View
+    // MARK: - Table View
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections!.count
@@ -138,7 +138,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.textLabel?.text = object.content
     }
     
-    // #pragma mark - Fetched results controller
+    // MARK: - Fetched results controller
     
     var fetchedResultsController: NSFetchedResultsController {
         if _fetchedResultsController != nil {
@@ -212,7 +212,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         self.tableView.endUpdates()
     }
     
-    // #pragma mark UITextFieldDelegate
+    // MARK: - UITextFieldDelegate
     
     func textFieldDidBeginEditing(textField: UITextField){
        

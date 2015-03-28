@@ -5,16 +5,64 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--HardChoice-->
+        <!--Questions-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="HardChoice" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="HardChoice_WatchKit_App" customModuleProvider="target">
+                <controller title="Questions" id="AgC-eL-Hgc" customClass="QuestionInterfaceController" customModule="HardChoice_WatchKit_Extension">
                     <items>
-                        <group width="1" height="1" alignment="left" id="eKW-vj-EbX"/>
+                        <table alignment="left" id="0NY-IG-j7G">
+                            <items>
+                                <tableRow identifier="QuestionTableRowController" id="ubn-AD-WhE" customClass="QuestionTableRowController" customModule="HardChoice_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Q4V-sj-JOz">
+                                        <items>
+                                            <label width="1" height="1" alignment="left" text="Label" id="EtR-bI-5up"/>
+                                        </items>
+                                        <color key="backgroundColor" red="0.40000000596046448" green="1" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="questionName" destination="EtR-bI-5up" id="XlO-VT-f23"/>
+                                        <segue destination="ozL-J1-fZc" kind="push" identifier="viewChoices" id="F8Q-u2-iLC"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
                     </items>
+                    <color key="backgroundColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="questionTable" destination="0NY-IG-j7G" id="mYJ-E5-5Ir"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="220" y="345"/>
+        </scene>
+        <!--Choices-->
+        <scene sceneID="xoJ-CM-MD7">
+            <objects>
+                <controller title="Choices" id="ozL-J1-fZc" customClass="ChoiceInterfaceController" customModule="HardChoice_WatchKit_Extension">
+                    <items>
+                        <table alignment="left" id="A1P-FO-ZUI">
+                            <items>
+                                <tableRow identifier="ChoiceTableRowController" id="cy3-Yv-cio" customClass="ChoiceTableRowController" customModule="HardChoice_WatchKit_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="XIM-HK-6aR">
+                                        <items>
+                                            <label width="1" height="1" alignment="left" text="Label" id="OdV-pC-zHq"/>
+                                        </items>
+                                        <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="choiceName" destination="OdV-pC-zHq" id="CXp-6u-SOq"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <color key="backgroundColor" red="0.80000001190000003" green="1" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="choiceTable" destination="A1P-FO-ZUI" id="QNI-dB-egr"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="468" y="345"/>
         </scene>
         <!--Static Notification Interface Controller-->
         <scene sceneID="AEw-b0-oYE">
@@ -40,4 +88,5 @@
             <point key="canvasLocation" x="468" y="643"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.40000000596046448" green="0.80000001192092896" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>
