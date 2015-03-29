@@ -5,17 +5,19 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Questions-->
+        <!--Troubles-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller title="Questions" id="AgC-eL-Hgc" customClass="QuestionInterfaceController" customModule="HardChoice_WatchKit_Extension">
+                <controller title="Troubles" id="AgC-eL-Hgc" customClass="QuestionInterfaceController" customModule="HardChoice_WatchKit_Extension">
                     <items>
                         <table alignment="left" id="0NY-IG-j7G">
                             <items>
                                 <tableRow identifier="QuestionTableRowController" id="ubn-AD-WhE" customClass="QuestionTableRowController" customModule="HardChoice_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="Q4V-sj-JOz">
                                         <items>
-                                            <label width="1" height="1" alignment="left" text="Label" id="EtR-bI-5up"/>
+                                            <label width="1" height="1" alignment="left" text="Label" id="EtR-bI-5up">
+                                                <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </label>
                                         </items>
                                         <color key="backgroundColor" red="0.40000000596046448" green="1" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                                     </group>
@@ -45,7 +47,9 @@
                                 <tableRow identifier="ChoiceTableRowController" id="cy3-Yv-cio" customClass="ChoiceTableRowController" customModule="HardChoice_WatchKit_Extension">
                                     <group key="rootItem" width="1" alignment="left" id="XIM-HK-6aR">
                                         <items>
-                                            <label width="1" height="1" alignment="left" text="Label" id="OdV-pC-zHq"/>
+                                            <label width="1" height="1" alignment="left" text="Label" id="OdV-pC-zHq">
+                                                <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </label>
                                         </items>
                                         <color key="backgroundColor" red="0.40000000600000002" green="1" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
                                     </group>

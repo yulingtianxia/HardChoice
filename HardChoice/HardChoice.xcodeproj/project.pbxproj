@@ -115,7 +115,6 @@
 
 /* Begin PBXFileReference section */
 		A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableRowController.swift; sourceTree = "<group>"; };
-		A422355F1AC685E8009F3BDC /* DataKit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataKit-Bridging-Header.h"; sourceTree = "<group>"; };
 		A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceTableRowController.swift; sourceTree = "<group>"; };
 		A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceInterfaceController.swift; sourceTree = "<group>"; };
 		A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HardChoice.entitlements; sourceTree = "<group>"; };
@@ -331,7 +330,6 @@
 				A4B174A51AC5AA1E00CA8010 /* DataKit.h */,
 				A4B174A31AC5AA1E00CA8010 /* Supporting Files */,
 				A4B174F41AC5AABF00CA8010 /* DataAccess.swift */,
-				A422355F1AC685E8009F3BDC /* DataKit-Bridging-Header.h */,
 			);
 			path = DataKit;
 			sourceTree = "<group>";

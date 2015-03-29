@@ -10,7 +10,13 @@ import UIKit
 import CoreData
 
 
+public protocol DataUpdateDelegate {
+    func deleteRow(row: Int)
+}
+
 public class DataAccess:NSObject {
+    
+    public var dataDelegate:DataUpdateDelegate?
     
     private static let instance = DataAccess()
     public class var sharedInstance : DataAccess {
@@ -91,13 +97,20 @@ public class DataAccess:NSObject {
         })
     }
     
+    
+    // MARK: - Apple Watch data update
+    
+    func deleteRowAtIndexPath(index:NSIndexPath?) {
+        
+    }
+    
     // MARK: - Core Data stack
     
     public lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.yxy.iCloudCoreDataTest" in the application's documents Application Support directory.
         //        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         //        return urls[urls.count-1] as! NSURL
-        let kMyAppGroupName =   "group.com.yulingtianxia.HardChoice"
+        let kMyAppGroupName = "group.com.yulingtianxia.HardChoice"
         var sharedContainerURL:NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(kMyAppGroupName)
         return sharedContainerURL ?? NSURL()
         }()

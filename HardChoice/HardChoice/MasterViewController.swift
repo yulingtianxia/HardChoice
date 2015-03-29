@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import DataKit
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate{
     var managedObjectContext: NSManagedObjectContext? = nil
@@ -198,6 +199,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            DataAccess.sharedInstance.dataDelegate?.deleteRow((indexPath?.row)!)
         case .Update:
             self.configureCell(tableView.cellForRowAtIndexPath(indexPath!) as! DynamicCell, atIndexPath: indexPath!)
         case .Move:
