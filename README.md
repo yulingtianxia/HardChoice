@@ -8,13 +8,13 @@ HardChoice
 - 支持字体随系统变化
 - 支持self-sizing
 - 支持iCloud同步数据
+- 支持Watch
 
 **纯Swift编写**  
 
 主页：http://hardchoice.yulingtianxia.com  
 
-![](http://wal8.com/64224622)
-![](http://wal8.com/64224623)
+![](http://ww4.sinaimg.cn/mw1024/642c5793jw1eqn168mvdfj212s12sqa6.jpg)  
 
 HardChoice代码教程地址：  
 
@@ -29,4 +29,4 @@ HardChoice代码教程地址：
 
 语法更新至beta7（2014.9.5），出现连接错误时可以clean build folder（点product->clean之前按住option）试试。
 
-2015.2.10更新语法至Swift 1.2，语法改动较大，请在Xcode 6.3beta及更高版本运行。  
+2015.2.10更新语法至Swift 1.2，语法改动较大，请在Xcode 6.3 beta4 及更高版本运行。  

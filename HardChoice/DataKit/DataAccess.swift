@@ -10,13 +10,13 @@ import UIKit
 import CoreData
 
 
-public protocol DataUpdateDelegate {
+@objc public protocol DataUpdateDelegate {
     func deleteRow(row: Int)
 }
 
 public class DataAccess:NSObject {
     
-    public var dataDelegate:DataUpdateDelegate?
+    public weak var dataDelegate:DataUpdateDelegate?
     
     private static let instance = DataAccess()
     public class var sharedInstance : DataAccess {
