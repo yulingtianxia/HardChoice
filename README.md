@@ -1,6 +1,8 @@
 HardChoice
 ==========
 
+[![Join the chat at https://gitter.im/yulingtianxia/HardChoice](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/yulingtianxia/HardChoice?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 有时候作抉择真的很痛苦  
 生活中会遇到很多抉择，比如今天中午吃啥？今天谁去买饭？面对着种种疑问，我们可以先把备选答案以及期望的权值写下来，然后就交给摇摇乐来告诉最终的结果吧！摇一摇手机就能知道答案！  
 
