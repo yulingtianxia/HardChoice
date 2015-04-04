@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FD1171ACE647F00BBB6F4 /* Wormhole.swift */; };
 		A422355C1AC676B6009F3BDC /* QuestionTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */; };
 		A42235601AC686C2009F3BDC /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
 		A42235611AC686C6009F3BDC /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
@@ -114,6 +115,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A41FD1171ACE647F00BBB6F4 /* Wormhole.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wormhole.swift; sourceTree = "<group>"; };
 		A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableRowController.swift; sourceTree = "<group>"; };
 		A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceTableRowController.swift; sourceTree = "<group>"; };
 		A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceInterfaceController.swift; sourceTree = "<group>"; };
@@ -330,6 +332,7 @@
 				A4B174A51AC5AA1E00CA8010 /* DataKit.h */,
 				A4B174A31AC5AA1E00CA8010 /* Supporting Files */,
 				A4B174F41AC5AABF00CA8010 /* DataAccess.swift */,
+				A41FD1171ACE647F00BBB6F4 /* Wormhole.swift */,
 			);
 			path = DataKit;
 			sourceTree = "<group>";
@@ -697,6 +700,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */,
 				A4B174F51AC5AABF00CA8010 /* DataAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
