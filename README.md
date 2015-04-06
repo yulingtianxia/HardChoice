@@ -16,7 +16,7 @@ HardChoice
 
 主页：http://hardchoice.yulingtianxia.com  
 
-![](http://ww4.sinaimg.cn/mw1024/642c5793jw1eqn168mvdfj212s12sqa6.jpg)  
+![](http://yulingtianxia.qiniudn.com/hardchoice.gif)  
 
 HardChoice代码教程地址：  
 
