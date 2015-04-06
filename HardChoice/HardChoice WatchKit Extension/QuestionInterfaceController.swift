@@ -10,16 +10,22 @@ import WatchKit
 import Foundation
 import DataKit
 
-class QuestionInterfaceController: WKInterfaceController, DataUpdateDelegate {
+class QuestionInterfaceController: WKInterfaceController {
 
     @IBOutlet weak var questionTable: WKInterfaceTable!
     var questions:[String]!
+    var wormhole:Wormhole!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         // Configure interface objects here.
-        DataAccess.sharedInstance.dataDelegate = self
-        loadData()
+
+        //初始化虫洞
+        wormhole = Wormhole(applicationGroupIdentifier: appGroupIdentifier, optionalDirectory: "wormhole")
+        wormhole.listenForMessageWithIdentifier("questionData", listener: { [unowned self](data) -> Void in
+            self.loadData()
+
+        })
     }
     
     func loadData(){

@@ -7,13 +7,14 @@
 //
 
 import UIKit
-import CoreData
 import DataKit
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate{
     var managedObjectContext: NSManagedObjectContext? = nil
     var selectedIndexPath:NSIndexPath!
     var lastVisualRow = 0
+    var wormhole:Wormhole!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -28,6 +29,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         tableView.estimatedRowHeight = 44
         tableView.tableFooterView = UIView()
         navigationController?.hidesBarsOnSwipe = true
+        
+        //初始化虫洞
+        wormhole = Wormhole(applicationGroupIdentifier: appGroupIdentifier, optionalDirectory: "wormhole")
+        
     }
     
     
@@ -194,12 +199,12 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        wormhole.passMessageObject(true, identifier: "questionData")
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
         case .Delete:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            DataAccess.sharedInstance.dataDelegate?.deleteRow((indexPath?.row)!)
         case .Update:
             self.configureCell(tableView.cellForRowAtIndexPath(indexPath!) as! DynamicCell, atIndexPath: indexPath!)
         case .Move:

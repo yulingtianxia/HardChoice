@@ -8,12 +8,13 @@
 
 import CoreFoundation
 
-typealias MessageListenerBlock = (AnyObject) -> Void
+public typealias MessageListenerBlock = (AnyObject) -> Void
 
 let WormholeNotificationName = "WormholeNotificationName"
 let center = CFNotificationCenterGetDarwinNotifyCenter()
+let helpMethod = HelpMethod()
 
-class Wormhole: NSObject {
+public class Wormhole: NSObject {
     var applicationGroupIdentifier:String!
     var directory:String?
     var fileManager:NSFileManager!
@@ -26,13 +27,13 @@ class Wormhole: NSObject {
     
     :returns: Wormhole实例对象
     */
-    init(applicationGroupIdentifier identifier:String, optionalDirectory dir:String) {
+    public init(applicationGroupIdentifier identifier:String, optionalDirectory dir:String) {
         super.init()
         applicationGroupIdentifier = identifier
         directory = dir
         fileManager = NSFileManager()
         listenerBlocks = Dictionary()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveMessageNotification", name: WormholeNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveMessageNotification:", name: WormholeNotificationName, object: nil)
     }
     
     deinit{
@@ -94,16 +95,16 @@ class Wormhole: NSObject {
     }
     
     func registerForNotificationsWithIdentifier(identifier:String) {
-        CFNotificationCenterAddObserver(center, unsafeAddressOf(self), unsafeBitCast(wormholeNotificationCallback, CFNotificationCallback.self), identifier, nil, CFNotificationSuspensionBehavior.DeliverImmediately)
+        CFNotificationCenterAddObserver(center, unsafeAddressOf(self), helpMethod.callback, identifier, nil, CFNotificationSuspensionBehavior.DeliverImmediately)
     }
     
     func unregisterForNotificationsWithIdentifier(identifier:String) {
         CFNotificationCenterRemoveObserver(center, unsafeAddressOf(self), identifier, nil)
     }
     
-    func wormholeNotificationCallback(center:CFNotificationCenter!, observer:UnsafeMutablePointer<Void>, name:CFString!, object:UnsafePointer<Void>, userInfo:CFDictionary!) {
-        NSNotificationCenter.defaultCenter().postNotificationName(WormholeNotificationName, object: nil, userInfo: ["identifier":name])
-    }
+//    func wormholeNotificationCallback(center:CFNotificationCenter!, observer:UnsafeMutablePointer<Void>, name:CFString!, object:UnsafePointer<Void>, userInfo:CFDictionary!) {
+//        NSNotificationCenter.defaultCenter().postNotificationName(WormholeNotificationName, object: nil, userInfo: ["identifier":name])
+//    }
     
     func didReceiveMessageNotification(notification:NSNotification) {
         let userInfo = notification.userInfo
@@ -118,19 +119,19 @@ class Wormhole: NSObject {
     
     //MARK: - Public Interface Methods
     
-    func passMessageObject(messageObject:NSCoding ,identifier:String) {
+    public func passMessageObject(messageObject:NSCoding ,identifier:String) {
         writeMessageObject(messageObject, toFileWithIdentifier: identifier)
     }
     
-    func messageWithIdentifier(identifier:String) -> AnyObject? {
+    public func messageWithIdentifier(identifier:String) -> AnyObject? {
         return messageObjectFromFileWithIdentifier(identifier)
     }
     
-    func clearMessageContentsForIdentifier(identifier:String) {
+    public func clearMessageContentsForIdentifier(identifier:String) {
         deleteFileForIdentifier(identifier)
     }
     
-    func clearAllMessageContents() {
+    public func clearAllMessageContents() {
         if directory != nil, let directoryPath = messagePassingDirectoryPath(), let messageFiles = fileManager.contentsOfDirectoryAtPath(directoryPath, error: nil) {
             for path in messageFiles as! [String] {
                 fileManager.removeItemAtPath(directoryPath.stringByAppendingPathComponent(path), error: nil)
@@ -138,12 +139,12 @@ class Wormhole: NSObject {
         }
     }
     
-    func listenForMessageWithIdentifier(identifier:String, listener:MessageListenerBlock) {
+    public func listenForMessageWithIdentifier(identifier:String, listener:MessageListenerBlock) {
         listenerBlocks[identifier] = listener
         registerForNotificationsWithIdentifier(identifier)
     }
     
-    func stopListeningForMessageWithIdentifier(identifier:String) {
+    public func stopListeningForMessageWithIdentifier(identifier:String) {
         listenerBlocks[identifier] = nil
         unregisterForNotificationsWithIdentifier(identifier)
     }

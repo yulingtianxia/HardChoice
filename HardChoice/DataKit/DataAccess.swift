@@ -9,14 +9,9 @@
 import UIKit
 import CoreData
 
-
-@objc public protocol DataUpdateDelegate {
-    func deleteRow(row: Int)
-}
+public let appGroupIdentifier = "group.com.yulingtianxia.HardChoice"
 
 public class DataAccess:NSObject {
-    
-    public weak var dataDelegate:DataUpdateDelegate?
     
     private static let instance = DataAccess()
     public class var sharedInstance : DataAccess {
@@ -110,8 +105,7 @@ public class DataAccess:NSObject {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.yxy.iCloudCoreDataTest" in the application's documents Application Support directory.
         //        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         //        return urls[urls.count-1] as! NSURL
-        let kMyAppGroupName = "group.com.yulingtianxia.HardChoice"
-        var sharedContainerURL:NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(kMyAppGroupName)
+        var sharedContainerURL:NSURL? = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier(appGroupIdentifier)
         return sharedContainerURL ?? NSURL()
         }()
     

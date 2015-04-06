@@ -16,6 +16,10 @@
 		A42235641AC69E5C009F3BDC /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
 		A42235661AC69FFF009F3BDC /* ChoiceTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */; };
 		A42235681AC6A213009F3BDC /* ChoiceInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */; };
+		A42DE91D1AD22D400090CC0E /* HelpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A42DE91B1AD22D400090CC0E /* HelpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A42DE91C1AD22D400090CC0E /* HelpMethod.m */; };
+		A42DE9201AD24ED90090CC0E /* Choice.h in Headers */ = {isa = PBXBuildFile; fileRef = A4EEC0001A669FA300A39FC3 /* Choice.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A42DE9211AD24EE20090CC0E /* Question.h in Headers */ = {isa = PBXBuildFile; fileRef = A4EEC0021A669FA300A39FC3 /* Question.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
@@ -119,6 +123,8 @@
 		A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionTableRowController.swift; sourceTree = "<group>"; };
 		A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceTableRowController.swift; sourceTree = "<group>"; };
 		A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceInterfaceController.swift; sourceTree = "<group>"; };
+		A42DE91B1AD22D400090CC0E /* HelpMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpMethod.h; sourceTree = "<group>"; };
+		A42DE91C1AD22D400090CC0E /* HelpMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpMethod.m; sourceTree = "<group>"; };
 		A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HardChoice.entitlements; sourceTree = "<group>"; };
 		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
 		A481281B1962A39F0048AB6C /* HardChoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HardChoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */,
-				A4CEA7FD1963D7AC00CE2B8B /* Model */,
 				A4CEA7F91963D77D00CE2B8B /* View */,
 				A48128201962A39F0048AB6C /* AppDelegate.swift */,
 				A48128251962A39F0048AB6C /* MasterViewController.swift */,
@@ -329,10 +334,13 @@
 		A4B174A21AC5AA1E00CA8010 /* DataKit */ = {
 			isa = PBXGroup;
 			children = (
+				A4CEA7FD1963D7AC00CE2B8B /* Model */,
 				A4B174A51AC5AA1E00CA8010 /* DataKit.h */,
 				A4B174A31AC5AA1E00CA8010 /* Supporting Files */,
 				A4B174F41AC5AABF00CA8010 /* DataAccess.swift */,
 				A41FD1171ACE647F00BBB6F4 /* Wormhole.swift */,
+				A42DE91B1AD22D400090CC0E /* HelpMethod.h */,
+				A42DE91C1AD22D400090CC0E /* HelpMethod.m */,
 			);
 			path = DataKit;
 			sourceTree = "<group>";
@@ -379,6 +387,7 @@
 				A4EEC0031A669FA300A39FC3 /* Question.m */,
 			);
 			name = Model;
+			path = ../HardChoice;
 			sourceTree = "<group>";
 		};
 		DD80FC3B4E004CB5B1C4AC49 /* Frameworks */ = {
@@ -397,7 +406,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A42DE9211AD24EE20090CC0E /* Question.h in Headers */,
 				A4B174A61AC5AA1E00CA8010 /* DataKit.h in Headers */,
+				A42DE91D1AD22D400090CC0E /* HelpMethod.h in Headers */,
+				A42DE9201AD24ED90090CC0E /* Choice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -701,6 +713,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */,
+				A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */,
 				A4B174F51AC5AABF00CA8010 /* DataAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1064,6 +1077,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1092,6 +1106,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

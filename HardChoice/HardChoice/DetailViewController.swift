@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DataKit
 
 class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,UITextFieldDelegate{
 
@@ -19,12 +20,15 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             
         }
     }
+    var wormhole:Wormhole!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.tableFooterView = UIView()
         navigationController?.hidesBarsOnSwipe = true
+        //初始化虫洞
+        wormhole = Wormhole(applicationGroupIdentifier: appGroupIdentifier, optionalDirectory: "wormhole")
     }
     
     override func didReceiveMemoryWarning() {
@@ -226,6 +230,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        wormhole.passMessageObject(true, identifier: "choiceData")
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)

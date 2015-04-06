@@ -17,3 +17,6 @@ FOUNDATION_EXPORT const unsigned char DataKitVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <DataKit/PublicHeader.h>
 
 
+#import "Question.h"
+#import "Choice.h"
+#import "HelpMethod.h"

@@ -10,18 +10,23 @@ import WatchKit
 import Foundation
 import DataKit
 
-class ChoiceInterfaceController: WKInterfaceController, DataUpdateDelegate {
+class ChoiceInterfaceController: WKInterfaceController {
 
     @IBOutlet weak var choiceTable: WKInterfaceTable!
     var question:String?
+    var wormhole:Wormhole!
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        DataAccess.sharedInstance.dataDelegate = self
         
         // Configure interface objects here.
         
         question = context as? String
-        loadData(question)
+        //初始化虫洞
+        wormhole = Wormhole(applicationGroupIdentifier: appGroupIdentifier, optionalDirectory: "wormhole")
+        wormhole.listenForMessageWithIdentifier("choiceData", listener: { [unowned self](data) -> Void in
+            self.loadData(self.question)
+            
+            })
     }
     
     func loadData(question: AnyObject?){
