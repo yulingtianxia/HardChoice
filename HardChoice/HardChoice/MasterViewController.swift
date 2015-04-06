@@ -199,7 +199,6 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        wormhole.passMessageObject(true, identifier: "questionData")
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
@@ -217,6 +216,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
+        wormhole.passMessageObject(true, identifier: "questionData")
     }
     
     // MARK: - UITextFieldDelegate
