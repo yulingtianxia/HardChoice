@@ -1,0 +1,15 @@
+
+/* Class = "WKInterfaceController"; title = "Troubles"; ObjectID = "AgC-eL-Hgc"; */
+"AgC-eL-Hgc.title" = "Troubles";
+
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "EtR-bI-5up"; */
+"EtR-bI-5up.text" = "Label";
+
+/* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "IdU-wH-bcW"; */
+"IdU-wH-bcW.text" = "Alert Label";
+
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "OdV-pC-zHq"; */
+"OdV-pC-zHq.text" = "Label";
+
+/* Class = "WKInterfaceController"; title = "Choices"; ObjectID = "ozL-J1-fZc"; */
+"ozL-J1-fZc.title" = "Choices";
