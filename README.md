@@ -24,11 +24,12 @@ HardChoice代码教程地址：
 - TableView self-sizing Cell:http://yulingtianxia.com/blog/2014/08/17/New-in-Table-and-Collection-Views/  
 - UIAlertController in iOS8:http://yulingtianxia.com/blog/2014/09/29/uialertcontroller-in-ios8/  
 - When CoreData meets iCloud:http://yulingtianxia.com/blog/2015/02/10/When-CoreData-meets-iCloud/  
+- Communication between your App and Extensions:http://yulingtianxia.com/blog/2015/04/06/Communication-between-your-App-and-Extensions/  
 
 如果遇到了类型转换编译报错，可以手动加代码强制转换或者用64位模拟器（如iPhone5s）运行
 
-建议在Xcode6beta5下运行，beta4会出现问题，这是由于beta4的IB取消了Resizeable Controller和增加了module设置（在storyboard源文件中有体现，多了customModule、customModuleProvider）导致的，可以先用Resizeable iPhone运行下，然后再用iPhone5s运行，并在Controller的module处设置成HardChoice，这样就能修复IB文件的错误
+~~建议在Xcode6beta5下运行，beta4会出现问题，这是由于beta4的IB取消了Resizeable Controller和增加了module设置（在storyboard源文件中有体现，多了customModule、customModuleProvider）导致的，可以先用Resizeable iPhone运行下，然后再用iPhone5s运行，并在Controller的module处设置成HardChoice，这样就能修复IB文件的错误~~
 
-语法更新至beta7（2014.9.5），出现连接错误时可以clean build folder（点product->clean之前按住option）试试。
+~~语法更新至beta7（2014.9.5），出现连接错误时可以clean build folder（点product->clean之前按住option）试试。~~
 
 2015.2.10更新语法至Swift 1.2，语法改动较大，请在Xcode 6.3 beta4 及更高版本运行。  

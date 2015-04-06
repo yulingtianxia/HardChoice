@@ -66,7 +66,7 @@ public class DataAccess:NSObject {
         fetchRequest.sortDescriptors = sortDescriptors
         var error: NSError?
         return managedObjectContext?.executeFetchRequest(fetchRequest, error: &error)?.map({ (question) -> String in
-            return (question as! NSManagedObject).valueForKey("content") as! String
+            return (question as! Question).content
         })
     }
     
@@ -88,20 +88,14 @@ public class DataAccess:NSObject {
         var error: NSError?
         let hehe = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error)!
         return managedObjectContext?.executeFetchRequest(fetchRequest, error: &error)?.map({ (choice) -> String in
-            return (choice as! NSManagedObject).valueForKey("name") as! String
+            return (choice as! Choice).name
         })
     }
-    
-    
-    // MARK: - Apple Watch data update
-    
-    func deleteRowAtIndexPath(index:NSIndexPath?) {
-        
-    }
+
     
     // MARK: - Core Data stack
     
-    public lazy var applicationDocumentsDirectory: NSURL = {
+    lazy var applicationDocumentsDirectory: NSURL = {
         // The directory the application uses to store the Core Data store file. This code uses a directory named "com.yxy.iCloudCoreDataTest" in the application's documents Application Support directory.
         //        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
         //        return urls[urls.count-1] as! NSURL
@@ -109,13 +103,13 @@ public class DataAccess:NSObject {
         return sharedContainerURL ?? NSURL()
         }()
     
-    public lazy var managedObjectModel: NSManagedObjectModel = {
+    lazy var managedObjectModel: NSManagedObjectModel = {
         // The managed object model for the application. This property is not optional. It is a fatal error for the application not to be able to find and load its model.
         let modelURL = NSBundle.mainBundle().URLForResource("HardChoice", withExtension: "momd")!
         return NSManagedObjectModel(contentsOfURL: modelURL)!
         }()
     
-    public lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
+    lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator? = {
         // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
         // Create the coordinator and store
         var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)

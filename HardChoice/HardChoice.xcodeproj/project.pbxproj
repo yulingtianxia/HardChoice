@@ -9,17 +9,15 @@
 /* Begin PBXBuildFile section */
 		A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FD1171ACE647F00BBB6F4 /* Wormhole.swift */; };
 		A422355C1AC676B6009F3BDC /* QuestionTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */; };
-		A42235601AC686C2009F3BDC /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
-		A42235611AC686C6009F3BDC /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
 		A42235621AC6996F009F3BDC /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
-		A42235631AC69E2F009F3BDC /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
-		A42235641AC69E5C009F3BDC /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
 		A42235661AC69FFF009F3BDC /* ChoiceTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */; };
 		A42235681AC6A213009F3BDC /* ChoiceInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */; };
-		A42DE91D1AD22D400090CC0E /* HelpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A42DE91B1AD22D400090CC0E /* HelpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A42DE91C1AD22D400090CC0E /* HelpMethod.m */; };
 		A42DE9201AD24ED90090CC0E /* Choice.h in Headers */ = {isa = PBXBuildFile; fileRef = A4EEC0001A669FA300A39FC3 /* Choice.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A42DE9211AD24EE20090CC0E /* Question.h in Headers */ = {isa = PBXBuildFile; fileRef = A4EEC0021A669FA300A39FC3 /* Question.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A42DE9261AD2B55B0090CC0E /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
+		A42DE9271AD2B5600090CC0E /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
+		A42DE92A1AD2DF3C0090CC0E /* HelpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A42DE91B1AD22D400090CC0E /* HelpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
@@ -408,9 +406,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A42DE92A1AD2DF3C0090CC0E /* HelpMethod.h in Headers */,
 				A42DE9211AD24EE20090CC0E /* Question.h in Headers */,
 				A4B174A61AC5AA1E00CA8010 /* DataKit.h in Headers */,
-				A42DE91D1AD22D400090CC0E /* HelpMethod.h in Headers */,
 				A42DE9201AD24ED90090CC0E /* Choice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -677,11 +675,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A42235601AC686C2009F3BDC /* Choice.m in Sources */,
 				A474C92019A0854A00262645 /* DynamicCell.swift in Sources */,
 				A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */,
 				A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */,
-				A42235611AC686C6009F3BDC /* Question.m in Sources */,
 				A48128261962A39F0048AB6C /* MasterViewController.swift in Sources */,
 				A48128281962A39F0048AB6C /* DetailViewController.swift in Sources */,
 			);
@@ -699,12 +695,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A42235641AC69E5C009F3BDC /* Choice.m in Sources */,
 				A4B174811AC551CD00CA8010 /* NotificationController.swift in Sources */,
 				A42235681AC6A213009F3BDC /* ChoiceInterfaceController.swift in Sources */,
 				A42235661AC69FFF009F3BDC /* ChoiceTableRowController.swift in Sources */,
 				A42235621AC6996F009F3BDC /* HardChoice.xcdatamodeld in Sources */,
-				A42235631AC69E2F009F3BDC /* Question.m in Sources */,
 				A422355C1AC676B6009F3BDC /* QuestionTableRowController.swift in Sources */,
 				A4B1747F1AC551CD00CA8010 /* QuestionInterfaceController.swift in Sources */,
 			);
@@ -715,7 +709,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */,
+				A42DE9261AD2B55B0090CC0E /* Question.m in Sources */,
 				A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */,
+				A42DE9271AD2B5600090CC0E /* Choice.m in Sources */,
 				A4B174F51AC5AABF00CA8010 /* DataAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
