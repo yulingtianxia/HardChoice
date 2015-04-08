@@ -18,6 +18,7 @@
 		A42DE9261AD2B55B0090CC0E /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
 		A42DE9271AD2B5600090CC0E /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
 		A42DE92A1AD2DF3C0090CC0E /* HelpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A42DE91B1AD22D400090CC0E /* HelpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A440861B1AD585FD00157968 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A440861A1AD585FD00157968 /* GlanceController.swift */; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
@@ -126,6 +127,7 @@
 		A42DE9231AD2A9580090CC0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
 		A42DE9251AD2A95A0090CC0E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
 		A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HardChoice.entitlements; sourceTree = "<group>"; };
+		A440861A1AD585FD00157968 /* GlanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
 		A481281B1962A39F0048AB6C /* HardChoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HardChoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48128201962A39F0048AB6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				A4B1749B1AC59E7500CA8010 /* HardChoice WatchKit Extension.entitlements */,
 				A4B1747E1AC551CD00CA8010 /* QuestionInterfaceController.swift */,
 				A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */,
+				A440861A1AD585FD00157968 /* GlanceController.swift */,
 				A4B174801AC551CD00CA8010 /* NotificationController.swift */,
 				A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */,
 				A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */,
@@ -699,6 +702,7 @@
 				A42235681AC6A213009F3BDC /* ChoiceInterfaceController.swift in Sources */,
 				A42235661AC69FFF009F3BDC /* ChoiceTableRowController.swift in Sources */,
 				A42235621AC6996F009F3BDC /* HardChoice.xcdatamodeld in Sources */,
+				A440861B1AD585FD00157968 /* GlanceController.swift in Sources */,
 				A422355C1AC676B6009F3BDC /* QuestionTableRowController.swift in Sources */,
 				A4B1747F1AC551CD00CA8010 /* QuestionInterfaceController.swift in Sources */,
 			);

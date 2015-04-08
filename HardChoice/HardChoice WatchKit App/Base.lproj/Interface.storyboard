@@ -85,6 +85,18 @@
             </objects>
             <point key="canvasLocation" x="220" y="643"/>
         </scene>
+        <!--Glance Interface Controller-->
+        <scene sceneID="rW1-fS-7oi">
+            <objects>
+                <glanceController id="Aak-na-rj5">
+                    <items>
+                        <group alignment="left" id="Go6-Ij-7f1"/>
+                        <group alignment="left" id="Qad-Mu-ZHk"/>
+                    </items>
+                </glanceController>
+            </objects>
+            <point key="canvasLocation" x="220" y="942"/>
+        </scene>
         <!--Notification Controller-->
         <scene sceneID="ZPc-GJ-vnh">
             <objects>
