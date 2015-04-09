@@ -119,7 +119,7 @@ public class Wormhole: NSObject {
     
     //MARK: - Public Interface Methods
     
-    public func passMessageObject(messageObject:NSCoding ,identifier:String) {
+    public func passMessageObject(messageObject:AnyObject ,identifier:String) {
         writeMessageObject(messageObject, toFileWithIdentifier: identifier)
     }
     

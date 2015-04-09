@@ -1,6 +1,9 @@
 
+/* Class = "WKInterfaceLabel"; text = "HardChoice"; ObjectID = "8iq-NR-STr"; */
+"8iq-NR-STr.text" = "艰难抉择";
+
 /* Class = "WKInterfaceController"; title = "Troubles"; ObjectID = "AgC-eL-Hgc"; */
-"AgC-eL-Hgc.title" = "Troubles";
+"AgC-eL-Hgc.title" = "抉择";
 
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "EtR-bI-5up"; */
 "EtR-bI-5up.text" = "Label";
@@ -11,5 +14,14 @@
 /* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "OdV-pC-zHq"; */
 "OdV-pC-zHq.text" = "Label";
 
+/* Class = "WKInterfaceLabel"; text = "Last Result"; ObjectID = "c1M-1m-rWw"; */
+"c1M-1m-rWw.text" = "最近结果";
+
+/* Class = "WKInterfaceLabel"; text = "No Trouble"; ObjectID = "gbG-vX-Jhx"; */
+"gbG-vX-Jhx.text" = "无难题";
+
 /* Class = "WKInterfaceController"; title = "Choices"; ObjectID = "ozL-J1-fZc"; */
-"ozL-J1-fZc.title" = "Choices";
+"ozL-J1-fZc.title" = "抉择";
+
+/* Class = "WKInterfaceLabel"; text = "No Choice"; ObjectID = "y5P-Xp-VQX"; */
+"y5P-Xp-VQX.text" = "无抉择";

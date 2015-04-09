@@ -14,7 +14,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     var managedObjectContext: NSManagedObjectContext? = nil
     var selectedIndexPath:NSIndexPath!
     var lastVisualRow = 0
-    var detailItem: Question? {
+    var detailItem: Question! {
         didSet {
             // Update the view.
             
@@ -44,7 +44,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             var arr = fetchedResultsController.fetchedObjects!
             var sum:Int = 0
             for object : AnyObject in arr{
-                sum+=(object as! Choice).weight.integerValue
+                sum += (object as! Choice).weight.integerValue
             }
             if sum>0{
                 var lucknum = arc4random()%UInt32(sum)+1
@@ -64,15 +64,16 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                         }
                     }
                 }
+                let message = (arr[num] as! Choice).name
+                wormhole.passMessageObject([detailItem.content, message], identifier: "shake")
+                //弹出Alert
                 var alertView = UIAlertView()
                 alertView.alertViewStyle = .Default
                 alertView.title = NSLocalizedString("Congratulations",comment:"")
-                alertView.message = (arr[num] as! Choice).name
+                alertView.message = message
                 alertView.addButtonWithTitle("OK")
                 alertView.show()
-            }
-            
-            
+            }  
         }
     }
     @IBAction func insertNewObject(sender: AnyObject) {

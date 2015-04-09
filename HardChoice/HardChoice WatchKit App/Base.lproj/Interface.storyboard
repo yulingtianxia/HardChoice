@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7528.3" systemVersion="14C1514" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7518.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
@@ -88,11 +88,34 @@
         <!--Glance Interface Controller-->
         <scene sceneID="rW1-fS-7oi">
             <objects>
-                <glanceController id="Aak-na-rj5">
+                <glanceController topTemplateType="groupBody1" id="Aak-na-rj5" customClass="GlanceController" customModule="HardChoice_WatchKit_Extension">
                     <items>
-                        <group alignment="left" id="Go6-Ij-7f1"/>
-                        <group alignment="left" id="Qad-Mu-ZHk"/>
+                        <group alignment="left" id="Go6-Ij-7f1">
+                            <items>
+                                <label width="1" height="1" alignment="left" text="HardChoice" id="8iq-NR-STr">
+                                    <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                </label>
+                            </items>
+                        </group>
+                        <label alignment="left" alpha="0.69999999999999996" text="Last Result" id="c1M-1m-rWw">
+                            <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <group alignment="left" backgroundImage="night" contentMode="bottom" animationDuration="1" layout="vertical" id="Qad-Mu-ZHk">
+                            <items>
+                                <label width="1" alignment="left" text="No Trouble" numberOfLines="0" id="gbG-vX-Jhx">
+                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                                <label width="1" alignment="left" text="No Choice" numberOfLines="0" id="y5P-Xp-VQX">
+                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </label>
+                            </items>
+                        </group>
                     </items>
+                    <connections>
+                        <outlet property="choice" destination="y5P-Xp-VQX" id="zlL-nJ-1qr"/>
+                        <outlet property="question" destination="gbG-vX-Jhx" id="exp-Xe-gxd"/>
+                    </connections>
                 </glanceController>
             </objects>
             <point key="canvasLocation" x="220" y="942"/>
