@@ -125,7 +125,6 @@
 		A42DE91B1AD22D400090CC0E /* HelpMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpMethod.h; sourceTree = "<group>"; };
 		A42DE91C1AD22D400090CC0E /* HelpMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpMethod.m; sourceTree = "<group>"; };
 		A438B4001AD6B8BF00F45468 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
-		A438B4021AD6B8C000F45468 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
 		A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HardChoice.entitlements; sourceTree = "<group>"; };
 		A440861A1AD585FD00157968 /* GlanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
@@ -140,6 +139,7 @@
 		A48128371962A39F0048AB6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A48128381962A39F0048AB6C /* HardChoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardChoiceTests.swift; sourceTree = "<group>"; };
 		A48128421962B2EA0048AB6C /* HardChoice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HardChoice-Bridging-Header.h"; sourceTree = "<group>"; };
+		A49F69F61AD7919500E4D498 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
 		A4B174791AC551CC00CA8010 /* HardChoice WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HardChoice WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B1747C1AC551CD00CA8010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A4B1747D1AC551CD00CA8010 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
@@ -780,7 +780,7 @@
 			children = (
 				A4B1748E1AC551CD00CA8010 /* Base */,
 				A438B4001AD6B8BF00F45468 /* en */,
-				A438B4021AD6B8C000F45468 /* zh-Hans */,
+				A49F69F61AD7919500E4D498 /* zh-Hans */,
 			);
 			name = Interface.storyboard;
 			sourceTree = "<group>";

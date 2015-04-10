@@ -104,10 +104,10 @@
                         <group alignment="left" backgroundImage="night" contentMode="bottom" animationDuration="1" layout="vertical" id="Qad-Mu-ZHk">
                             <items>
                                 <label width="1" alignment="left" text="No Trouble" numberOfLines="0" id="gbG-vX-Jhx">
-                                    <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="0.80000001192092896" green="1" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
                                 <label width="1" alignment="left" text="No Choice" numberOfLines="0" id="y5P-Xp-VQX">
-                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="textColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                 </label>
                             </items>
                         </group>
