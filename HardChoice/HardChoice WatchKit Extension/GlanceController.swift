@@ -22,9 +22,10 @@ class GlanceController: WKInterfaceController {
         // Configure interface objects here.
         //初始化虫洞
         wormhole = Wormhole(applicationGroupIdentifier: appGroupIdentifier, optionalDirectory: "wormhole")
-        let data = wormhole.messageWithIdentifier("shake") as! [String]
-        question.setText("Q:"+data[0])
-        choice.setText("A:"+data[1])
+        if let data = wormhole.messageWithIdentifier("shake") as! [String]? {
+            question.setText("Q:"+data[0])
+            choice.setText("A:"+data[1])
+        }
         wormhole.listenForMessageWithIdentifier("shake", listener: { [unowned self](data) -> Void in
             let questionText = "Q:" + (data as! [String])[0]
             let choiceText = "A:" + (data as! [String])[1]
