@@ -8,6 +8,7 @@
 
 import UIKit
 import DataKit
+import CoreData
 
 class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,UITextFieldDelegate{
 
@@ -286,7 +287,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             if let weight = (alert.textFields?[1] as! UITextField).text.toInt(){
                 newManagedObject.weight = weight
             }
-            self.detailItem!.addChoicesObject(newManagedObject)
+            self.detailItem!.choices = self.detailItem!.choices.setByAddingObject(newManagedObject)
             // Save the context.
             var error: NSError? = nil
             if !context.save(&error) {

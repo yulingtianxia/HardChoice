@@ -8,13 +8,14 @@
 
 import UIKit
 import DataKit
+import CoreData
 
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate{
     var managedObjectContext: NSManagedObjectContext? = nil
     var selectedIndexPath:NSIndexPath!
     var lastVisualRow = 0
     var wormhole:Wormhole!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }

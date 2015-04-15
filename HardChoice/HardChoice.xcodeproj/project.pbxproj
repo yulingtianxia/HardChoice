@@ -13,12 +13,10 @@
 		A42235661AC69FFF009F3BDC /* ChoiceTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */; };
 		A42235681AC6A213009F3BDC /* ChoiceInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */; };
 		A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A42DE91C1AD22D400090CC0E /* HelpMethod.m */; };
-		A42DE9201AD24ED90090CC0E /* Choice.h in Headers */ = {isa = PBXBuildFile; fileRef = A4EEC0001A669FA300A39FC3 /* Choice.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A42DE9211AD24EE20090CC0E /* Question.h in Headers */ = {isa = PBXBuildFile; fileRef = A4EEC0021A669FA300A39FC3 /* Question.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A42DE9261AD2B55B0090CC0E /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0031A669FA300A39FC3 /* Question.m */; };
-		A42DE9271AD2B5600090CC0E /* Choice.m in Sources */ = {isa = PBXBuildFile; fileRef = A4EEC0011A669FA300A39FC3 /* Choice.m */; };
 		A42DE92A1AD2DF3C0090CC0E /* HelpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A42DE91B1AD22D400090CC0E /* HelpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A440861B1AD585FD00157968 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A440861A1AD585FD00157968 /* GlanceController.swift */; };
+		A458BAC91ADE737400FBD69A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458BAC81ADE737400FBD69A /* Question.swift */; };
+		A458BACB1ADE737500FBD69A /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458BACA1ADE737500FBD69A /* Choice.swift */; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
 		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
@@ -127,6 +125,8 @@
 		A438B4001AD6B8BF00F45468 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Interface.strings; sourceTree = "<group>"; };
 		A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HardChoice.entitlements; sourceTree = "<group>"; };
 		A440861A1AD585FD00157968 /* GlanceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		A458BAC81ADE737400FBD69A /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		A458BACA1ADE737500FBD69A /* Choice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
 		A474C91F19A0854A00262645 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
 		A481281B1962A39F0048AB6C /* HardChoice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HardChoice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48128201962A39F0048AB6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,7 +138,6 @@
 		A48128321962A39F0048AB6C /* HardChoiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HardChoiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A48128371962A39F0048AB6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A48128381962A39F0048AB6C /* HardChoiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HardChoiceTests.swift; sourceTree = "<group>"; };
-		A48128421962B2EA0048AB6C /* HardChoice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HardChoice-Bridging-Header.h"; sourceTree = "<group>"; };
 		A49F69F61AD7919500E4D498 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Interface.strings"; sourceTree = "<group>"; };
 		A4B174791AC551CC00CA8010 /* HardChoice WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HardChoice WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4B1747C1AC551CD00CA8010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,10 +166,6 @@
 		A4C17F3819DBF84A001296E5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		A4DCE0191A83927100EA39B1 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		A4DCE01A1A83927100EA39B1 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		A4EEC0001A669FA300A39FC3 /* Choice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Choice.h; sourceTree = "<group>"; };
-		A4EEC0011A669FA300A39FC3 /* Choice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Choice.m; sourceTree = "<group>"; };
-		A4EEC0021A669FA300A39FC3 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
-		A4EEC0031A669FA300A39FC3 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
 		A4F92B8B19DCF75700C87D0E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "en.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
 		A4F92B8F19DCF85200C87D0E /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
 		A4F92B9019DCF87800C87D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Base.lproj/Launch Screen.xib"; sourceTree = "<group>"; };
@@ -259,7 +254,6 @@
 				A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */,
 				A4F92B8C19DCF75700C87D0E /* Launch Screen.xib */,
 				A481281E1962A39F0048AB6C /* Supporting Files */,
-				A48128421962B2EA0048AB6C /* HardChoice-Bridging-Header.h */,
 				A4C17F3919DBF84A001296E5 /* Localizable.strings */,
 			);
 			path = HardChoice;
@@ -384,10 +378,8 @@
 		A4CEA7FD1963D7AC00CE2B8B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A4EEC0001A669FA300A39FC3 /* Choice.h */,
-				A4EEC0011A669FA300A39FC3 /* Choice.m */,
-				A4EEC0021A669FA300A39FC3 /* Question.h */,
-				A4EEC0031A669FA300A39FC3 /* Question.m */,
+				A458BAC81ADE737400FBD69A /* Question.swift */,
+				A458BACA1ADE737500FBD69A /* Choice.swift */,
 			);
 			name = Model;
 			path = ../HardChoice;
@@ -410,9 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A42DE92A1AD2DF3C0090CC0E /* HelpMethod.h in Headers */,
-				A42DE9211AD24EE20090CC0E /* Question.h in Headers */,
 				A4B174A61AC5AA1E00CA8010 /* DataKit.h in Headers */,
-				A42DE9201AD24ED90090CC0E /* Choice.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,10 +703,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A458BAC91ADE737400FBD69A /* Question.swift in Sources */,
+				A458BACB1ADE737500FBD69A /* Choice.swift in Sources */,
 				A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */,
-				A42DE9261AD2B55B0090CC0E /* Question.m in Sources */,
 				A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */,
-				A42DE9271AD2B5600090CC0E /* Choice.m in Sources */,
 				A4B174F51AC5AABF00CA8010 /* DataAccess.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
