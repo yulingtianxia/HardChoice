@@ -10,6 +10,10 @@ import UIKit
 import DataKit
 import CoreData
 
+private let rollup = CATransform3DMakeRotation( CGFloat(M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+
+private let rolldown = CATransform3DMakeRotation( CGFloat(-M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+
 class MasterViewController: UITableViewController, NSFetchedResultsControllerDelegate, UITextFieldDelegate{
     var managedObjectContext: NSManagedObjectContext? = nil
     var selectedIndexPath:NSIndexPath!
@@ -98,12 +102,10 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         //1. Setup the CATransform3D structure
         var rotation:CATransform3D
         if lastVisualRow <= indexPath.row {//roll up
-            rotation = CATransform3DMakeRotation( CGFloat(M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
-            rotation.m34 = 1.0 / -600
+            cell.layer.transform = rollup
         }
         else{//roll down
-            rotation = CATransform3DMakeRotation( CGFloat(-M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
-            rotation.m34 = 1.0 / -600
+            cell.layer.transform = rolldown
         }
         lastVisualRow = indexPath.row
         
@@ -112,10 +114,8 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.layer.shadowColor = UIColor.blackColor().CGColor
         cell.layer.shadowOffset = CGSizeMake(10, 10)
         cell.alpha = 0
-        
-        cell.layer.transform = rotation
         cell.layer.anchorPoint = CGPointMake(0, 0.5)
-        
+        cell.layer.position.x = 0
         
         //3. Define the final state (After the animation) and commit the animation
         UIView.animateWithDuration(0.8, animations: { () -> Void in

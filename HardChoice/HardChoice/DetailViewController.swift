@@ -10,6 +10,10 @@ import UIKit
 import DataKit
 import CoreData
 
+private let rollup = CATransform3DMakeRotation( CGFloat(M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+
+private let rolldown = CATransform3DMakeRotation( CGFloat(-M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
+
 class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,UITextFieldDelegate{
 
     var managedObjectContext: NSManagedObjectContext? = nil
@@ -148,13 +152,11 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         //1. Setup the CATransform3D structure
         var rotation:CATransform3D
-        if lastVisualRow <= indexPath.row {//roll down
-            rotation = CATransform3DMakeRotation( CGFloat(90.0 * M_PI) / 180, CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
-            rotation.m34 = 1.0 / -600
+        if lastVisualRow <= indexPath.row {//roll up
+            cell.layer.transform = rollup
         }
-        else{//roll up
-            rotation = CATransform3DMakeRotation( CGFloat(-90.0 * M_PI) / 180, CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
-            rotation.m34 = 1.0 / 600
+        else{//roll down
+            cell.layer.transform = rolldown
         }
         lastVisualRow = indexPath.row
         
@@ -163,10 +165,8 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         cell.layer.shadowColor = UIColor.blackColor().CGColor
         cell.layer.shadowOffset = CGSizeMake(10, 10)
         cell.alpha = 0
-        
-        cell.layer.transform = rotation
         cell.layer.anchorPoint = CGPointMake(0, 0.5)
-        
+        cell.layer.position.x = 0
         
         //3. Define the final state (After the animation) and commit the animation
         UIView.animateWithDuration(0.8, animations: { () -> Void in

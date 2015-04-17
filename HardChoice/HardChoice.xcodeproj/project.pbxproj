@@ -9,17 +9,16 @@
 /* Begin PBXBuildFile section */
 		A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41FD1171ACE647F00BBB6F4 /* Wormhole.swift */; };
 		A422355C1AC676B6009F3BDC /* QuestionTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */; };
-		A42235621AC6996F009F3BDC /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
 		A42235661AC69FFF009F3BDC /* ChoiceTableRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */; };
 		A42235681AC6A213009F3BDC /* ChoiceInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */; };
 		A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A42DE91C1AD22D400090CC0E /* HelpMethod.m */; };
 		A42DE92A1AD2DF3C0090CC0E /* HelpMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = A42DE91B1AD22D400090CC0E /* HelpMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A440861B1AD585FD00157968 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A440861A1AD585FD00157968 /* GlanceController.swift */; };
+		A4514ED01AE0B22C00DC7701 /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
 		A458BAC91ADE737400FBD69A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458BAC81ADE737400FBD69A /* Question.swift */; };
 		A458BACB1ADE737500FBD69A /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A458BACA1ADE737500FBD69A /* Choice.swift */; };
 		A474C92019A0854A00262645 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A474C91F19A0854A00262645 /* DynamicCell.swift */; };
 		A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128201962A39F0048AB6C /* AppDelegate.swift */; };
-		A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */; };
 		A48128261962A39F0048AB6C /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128251962A39F0048AB6C /* MasterViewController.swift */; };
 		A48128281962A39F0048AB6C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A48128271962A39F0048AB6C /* DetailViewController.swift */; };
 		A481282B1962A39F0048AB6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A48128291962A39F0048AB6C /* Main.storyboard */; };
@@ -214,15 +213,65 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A4514ED11AE0B7F400DC7701 /* HardChoice WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				A4B1747A1AC551CD00CA8010 /* HardChoice WatchKit Extension */,
+				A4B1748A1AC551CD00CA8010 /* HardChoice WatchKit App */,
+			);
+			name = "HardChoice WatchKit App";
+			sourceTree = "<group>";
+		};
+		A4514ED21AE0B89200DC7701 /* Main App */ = {
+			isa = PBXGroup;
+			children = (
+				A4B1747E1AC551CD00CA8010 /* QuestionInterfaceController.swift */,
+				A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */,
+				A4514ED31AE0B8D400DC7701 /* Row Controllers */,
+			);
+			name = "Main App";
+			sourceTree = "<group>";
+		};
+		A4514ED31AE0B8D400DC7701 /* Row Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */,
+				A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */,
+			);
+			name = "Row Controllers";
+			sourceTree = "<group>";
+		};
+		A4514ED41AE0B90900DC7701 /* Glance */ = {
+			isa = PBXGroup;
+			children = (
+				A440861A1AD585FD00157968 /* GlanceController.swift */,
+			);
+			name = Glance;
+			sourceTree = "<group>";
+		};
+		A4514ED51AE0B92200DC7701 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				A4B174801AC551CD00CA8010 /* NotificationController.swift */,
+			);
+			name = Notification;
+			sourceTree = "<group>";
+		};
+		A4514ED61AE0B96D00DC7701 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A48128251962A39F0048AB6C /* MasterViewController.swift */,
+				A48128271962A39F0048AB6C /* DetailViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		A48128121962A39F0048AB6C = {
 			isa = PBXGroup;
 			children = (
+				A4514ED11AE0B7F400DC7701 /* HardChoice WatchKit App */,
 				A481281D1962A39F0048AB6C /* HardChoice */,
-				A48128351962A39F0048AB6C /* HardChoiceTests */,
-				A4B1747A1AC551CD00CA8010 /* HardChoice WatchKit Extension */,
-				A4B1748A1AC551CD00CA8010 /* HardChoice WatchKit App */,
 				A4B174A21AC5AA1E00CA8010 /* DataKit */,
-				A4B174B11AC5AA1E00CA8010 /* DataKitTests */,
 				A481281C1962A39F0048AB6C /* Products */,
 				DD80FC3B4E004CB5B1C4AC49 /* Frameworks */,
 			);
@@ -244,15 +293,12 @@
 		A481281D1962A39F0048AB6C /* HardChoice */ = {
 			isa = PBXGroup;
 			children = (
-				A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */,
-				A4CEA7F91963D77D00CE2B8B /* View */,
 				A48128201962A39F0048AB6C /* AppDelegate.swift */,
-				A48128251962A39F0048AB6C /* MasterViewController.swift */,
-				A48128271962A39F0048AB6C /* DetailViewController.swift */,
 				A48128291962A39F0048AB6C /* Main.storyboard */,
-				A481282C1962A39F0048AB6C /* Images.xcassets */,
-				A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */,
 				A4F92B8C19DCF75700C87D0E /* Launch Screen.xib */,
+				A4514ED61AE0B96D00DC7701 /* View Controllers */,
+				A4CEA7F91963D77D00CE2B8B /* Views */,
+				A48128351962A39F0048AB6C /* HardChoiceTests */,
 				A481281E1962A39F0048AB6C /* Supporting Files */,
 				A4C17F3919DBF84A001296E5 /* Localizable.strings */,
 			);
@@ -262,6 +308,8 @@
 		A481281E1962A39F0048AB6C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A481282C1962A39F0048AB6C /* Images.xcassets */,
+				A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */,
 				A4BACB0C19DC0BAA008FA8A7 /* Info.plist */,
 				A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */,
 			);
@@ -275,7 +323,7 @@
 				A48128361962A39F0048AB6C /* Supporting Files */,
 			);
 			path = HardChoiceTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		A48128361962A39F0048AB6C /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -288,14 +336,9 @@
 		A4B1747A1AC551CD00CA8010 /* HardChoice WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				A4B1749B1AC59E7500CA8010 /* HardChoice WatchKit Extension.entitlements */,
-				A4B1747E1AC551CD00CA8010 /* QuestionInterfaceController.swift */,
-				A42235671AC6A213009F3BDC /* ChoiceInterfaceController.swift */,
-				A440861A1AD585FD00157968 /* GlanceController.swift */,
-				A4B174801AC551CD00CA8010 /* NotificationController.swift */,
-				A422355B1AC676B6009F3BDC /* QuestionTableRowController.swift */,
-				A42235651AC69FFF009F3BDC /* ChoiceTableRowController.swift */,
-				A4B174821AC551CD00CA8010 /* Images.xcassets */,
+				A4514ED21AE0B89200DC7701 /* Main App */,
+				A4514ED41AE0B90900DC7701 /* Glance */,
+				A4514ED51AE0B92200DC7701 /* Notification */,
 				A4B1747B1AC551CD00CA8010 /* Supporting Files */,
 			);
 			path = "HardChoice WatchKit Extension";
@@ -304,6 +347,8 @@
 		A4B1747B1AC551CD00CA8010 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A4B174821AC551CD00CA8010 /* Images.xcassets */,
+				A4B1749B1AC59E7500CA8010 /* HardChoice WatchKit Extension.entitlements */,
 				A4B1747C1AC551CD00CA8010 /* Info.plist */,
 				A4B1747D1AC551CD00CA8010 /* PushNotificationPayload.apns */,
 			);
@@ -331,13 +376,15 @@
 		A4B174A21AC5AA1E00CA8010 /* DataKit */ = {
 			isa = PBXGroup;
 			children = (
+				A48128221962A39F0048AB6C /* HardChoice.xcdatamodeld */,
 				A4CEA7FD1963D7AC00CE2B8B /* Model */,
 				A4B174A51AC5AA1E00CA8010 /* DataKit.h */,
-				A4B174A31AC5AA1E00CA8010 /* Supporting Files */,
 				A4B174F41AC5AABF00CA8010 /* DataAccess.swift */,
 				A41FD1171ACE647F00BBB6F4 /* Wormhole.swift */,
 				A42DE91B1AD22D400090CC0E /* HelpMethod.h */,
 				A42DE91C1AD22D400090CC0E /* HelpMethod.m */,
+				A4B174A31AC5AA1E00CA8010 /* Supporting Files */,
+				A4B174B11AC5AA1E00CA8010 /* DataKitTests */,
 			);
 			path = DataKit;
 			sourceTree = "<group>";
@@ -357,7 +404,7 @@
 				A4B174B21AC5AA1E00CA8010 /* Supporting Files */,
 			);
 			path = DataKitTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		A4B174B21AC5AA1E00CA8010 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -367,12 +414,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A4CEA7F91963D77D00CE2B8B /* View */ = {
+		A4CEA7F91963D77D00CE2B8B /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				A474C91F19A0854A00262645 /* DynamicCell.swift */,
 			);
-			name = View;
+			name = Views;
 			sourceTree = "<group>";
 		};
 		A4CEA7FD1963D7AC00CE2B8B /* Model */ = {
@@ -671,7 +718,6 @@
 			files = (
 				A474C92019A0854A00262645 /* DynamicCell.swift in Sources */,
 				A48128211962A39F0048AB6C /* AppDelegate.swift in Sources */,
-				A48128241962A39F0048AB6C /* HardChoice.xcdatamodeld in Sources */,
 				A48128261962A39F0048AB6C /* MasterViewController.swift in Sources */,
 				A48128281962A39F0048AB6C /* DetailViewController.swift in Sources */,
 			);
@@ -692,7 +738,6 @@
 				A4B174811AC551CD00CA8010 /* NotificationController.swift in Sources */,
 				A42235681AC6A213009F3BDC /* ChoiceInterfaceController.swift in Sources */,
 				A42235661AC69FFF009F3BDC /* ChoiceTableRowController.swift in Sources */,
-				A42235621AC6996F009F3BDC /* HardChoice.xcdatamodeld in Sources */,
 				A440861B1AD585FD00157968 /* GlanceController.swift in Sources */,
 				A422355C1AC676B6009F3BDC /* QuestionTableRowController.swift in Sources */,
 				A4B1747F1AC551CD00CA8010 /* QuestionInterfaceController.swift in Sources */,
@@ -708,6 +753,7 @@
 				A41FD1181ACE647F00BBB6F4 /* Wormhole.swift in Sources */,
 				A42DE91E1AD22D400090CC0E /* HelpMethod.m in Sources */,
 				A4B174F51AC5AABF00CA8010 /* DataAccess.swift in Sources */,
+				A4514ED01AE0B22C00DC7701 /* HardChoice.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,7 +950,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "HardChoice/HardChoice-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -928,7 +974,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "HardChoice/HardChoice-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
@@ -1226,7 +1272,8 @@
 				A48128231962A39F0048AB6C /* HardChoice.xcdatamodel */,
 			);
 			currentVersion = A48128231962A39F0048AB6C /* HardChoice.xcdatamodel */;
-			path = HardChoice.xcdatamodeld;
+			name = HardChoice.xcdatamodeld;
+			path = ../HardChoice/HardChoice.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
