@@ -300,7 +300,6 @@
 				A4CEA7F91963D77D00CE2B8B /* Views */,
 				A48128351962A39F0048AB6C /* HardChoiceTests */,
 				A481281E1962A39F0048AB6C /* Supporting Files */,
-				A4C17F3919DBF84A001296E5 /* Localizable.strings */,
 			);
 			path = HardChoice;
 			sourceTree = "<group>";
@@ -310,6 +309,7 @@
 			children = (
 				A481282C1962A39F0048AB6C /* Images.xcassets */,
 				A43B54CC1A5AA9D500ACB30C /* HardChoice.entitlements */,
+				A4C17F3919DBF84A001296E5 /* Localizable.strings */,
 				A4BACB0C19DC0BAA008FA8A7 /* Info.plist */,
 				A4BACB1219DC0E6D008FA8A7 /* InfoPlist.strings */,
 			);
@@ -1020,6 +1020,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HardChoice WatchKit Extension/HardChoice WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1042,7 +1043,7 @@
 				CODE_SIGN_ENTITLEMENTS = "HardChoice WatchKit Extension/HardChoice WatchKit Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = "HardChoice WatchKit Extension/Info.plist";
@@ -1060,6 +1061,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1082,7 +1084,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				IBSC_MODULE = HardChoice_WatchKit_Extension;
@@ -1102,6 +1104,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
@@ -1134,7 +1137,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
