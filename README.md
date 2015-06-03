@@ -25,8 +25,9 @@ HardChoice代码教程地址：
 - UIAlertController in iOS8:http://yulingtianxia.com/blog/2014/09/29/uialertcontroller-in-ios8/  
 - When CoreData meets iCloud:http://yulingtianxia.com/blog/2015/02/10/When-CoreData-meets-iCloud/  
 - Communication between your App and Extensions:http://yulingtianxia.com/blog/2015/04/06/Communication-between-your-App-and-Extensions/  
+- Batch Update in CoreData:http://yulingtianxia.com/blog/2014/08/05/coredatachu-li-hai-liang-shu-ju/
 
-如果遇到了类型转换编译报错，可以手动加代码强制转换或者用64位模拟器（如iPhone5s）运行
+~~如果遇到了类型转换编译报错，可以手动加代码强制转换或者用64位模拟器（如iPhone5s）运行~~
 
 ~~建议在Xcode6beta5下运行，beta4会出现问题，这是由于beta4的IB取消了Resizeable Controller和增加了module设置（在storyboard源文件中有体现，多了customModule、customModuleProvider）导致的，可以先用Resizeable iPhone运行下，然后再用iPhone5s运行，并在Controller的module处设置成HardChoice，这样就能修复IB文件的错误~~
 

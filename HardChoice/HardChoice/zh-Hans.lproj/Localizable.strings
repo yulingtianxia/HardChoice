@@ -15,3 +15,4 @@
 "Enter Choices of the Trouble"="输入问题的备选答案";
 "An answer of your trouble"="问题的一个备选答案";
 "Weight can only be an integer"="权重只能是整数";
+"Reset Weight"="重置权重";

@@ -15,7 +15,6 @@ private let rollup = CATransform3DMakeRotation( CGFloat(M_PI_2), CGFloat(0.0), C
 private let rolldown = CATransform3DMakeRotation( CGFloat(-M_PI_2), CGFloat(0.0), CGFloat(0.7), CGFloat(0.4))
 
 class DetailViewController: UITableViewController, NSFetchedResultsControllerDelegate ,UITextFieldDelegate{
-
     var managedObjectContext: NSManagedObjectContext? = nil
     var selectedIndexPath:NSIndexPath!
     var lastVisualRow = 0
@@ -26,12 +25,17 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     var wormhole:Wormhole!
-    
+    let headerBtn = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.mainScreen().bounds.width, height: 50))
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.tableFooterView = UIView()
+        headerBtn.setTitle(NSLocalizedString("Reset Weight",comment:""), forState: UIControlState.Normal)
+        headerBtn.backgroundColor = UIColor.redColor()
+        headerBtn.addTarget(self, action: "resetWeight:", forControlEvents: UIControlEvents.TouchUpInside)
+        tableView.tableHeaderView = headerBtn
         navigationController?.hidesBarsOnSwipe = true
+        
         //初始化虫洞
         wormhole = Wormhole(applicationGroupIdentifier: appGroupIdentifier, optionalDirectory: "wormhole")
     }
@@ -81,6 +85,46 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             }  
         }
     }
+    
+    // MARK: - target-action
+    func resetWeight(sender: AnyObject) {
+        // Create Entity Description
+        let batchUpdateRequest = NSBatchUpdateRequest(entityName: "Choice")
+        
+        // Configure Batch Update Request
+        batchUpdateRequest.resultType = NSBatchUpdateRequestResultType.UpdatedObjectIDsResultType
+        batchUpdateRequest.propertiesToUpdate = ["weight":1]
+//        batchUpdateRequest.affectedStores = []
+//        batchUpdateRequest.predicate = ...
+        
+        // Execute Batch Request
+        var batchUpdateRequestError:NSError? = nil
+        var batchUpdateResult = managedObjectContext?.executeRequest(batchUpdateRequest, error: &batchUpdateRequestError) as! NSBatchUpdateResult
+        if batchUpdateRequestError != nil {
+            println("Unable to execute batch update request.")
+            println("\(batchUpdateRequestError)\(batchUpdateRequestError?.localizedDescription)")
+        }
+        else {
+            // Extract Object IDs
+            let objectIDs = batchUpdateResult.result as! [NSManagedObjectID]
+            
+            for objectID in objectIDs {
+                // Turn Managed Objects into Faults
+                if var managedObject = managedObjectContext?.objectWithID(objectID) {
+                    managedObjectContext?.performBlock({ () -> Void in
+                        managedObjectContext?.refreshObject(managedObject, mergeChanges: false)
+                    })
+                }
+            }
+            // Perform Fetch
+            var fetchError: NSError? = nil
+            if !fetchedResultsController.performFetch(&fetchError) {
+                println("Unable to perform fetch.")
+                println("\(fetchError)\(fetchError?.localizedDescription)")
+            }
+        }
+    }
+    
     @IBAction func insertNewObject(sender: AnyObject) {
         showEditAlertWithInsert(true)
     }
@@ -252,7 +296,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         wormhole.passMessageObject(true, identifier: "choiceData")
     }
     
-    // #pragma mark UITextFieldDelegate
+    // MARK: - UITextFieldDelegate
     
     func textFieldDidBeginEditing(textField: UITextField){
         
