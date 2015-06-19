@@ -22,10 +22,10 @@ public class Wormhole: NSObject {
     /**
     初始化方法
     
-    :param: identifier AppGroup的Identifier
-    :param: dir        可选的文件夹名称
+    - parameter identifier: AppGroup的Identifier
+    - parameter dir:        可选的文件夹名称
     
-    :returns: Wormhole实例对象
+    - returns: Wormhole实例对象
     */
     public init(applicationGroupIdentifier identifier:String, optionalDirectory dir:String) {
         super.init()
@@ -44,18 +44,21 @@ public class Wormhole: NSObject {
     // MARK: - Private File Operation Methods
     
     func messagePassingDirectoryPath() -> String? {
-        var appGroupContainer = self.fileManager.containerURLForSecurityApplicationGroupIdentifier(applicationGroupIdentifier)
-        var appGroupContainerPath = appGroupContainer?.path
+        let appGroupContainer = self.fileManager.containerURLForSecurityApplicationGroupIdentifier(applicationGroupIdentifier)
+        let appGroupContainerPath = appGroupContainer?.path
         if directory != nil, var directoryPath = appGroupContainerPath {
             directoryPath = directoryPath.stringByAppendingPathComponent(directory!)
-            fileManager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil, error: nil)
+            do {
+                try fileManager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+            } catch _ {
+            }
             return directoryPath
         }
         return nil
     }
     
     func filePathForIdentifier(identifier:String) -> String? {
-        if count(identifier) != 0, let directoryPath = messagePassingDirectoryPath() {
+        if identifier.characters.count != 0, let directoryPath = messagePassingDirectoryPath() {
             let fileName = "\(identifier).archive"
             return directoryPath.stringByAppendingPathComponent(fileName)
         }
@@ -63,7 +66,7 @@ public class Wormhole: NSObject {
     }
     
     func writeMessageObject(messageObject:AnyObject, toFileWithIdentifier identifier:String) {
-        var data = NSKeyedArchiver.archivedDataWithRootObject(messageObject)
+        let data = NSKeyedArchiver.archivedDataWithRootObject(messageObject)
         if let filePath = filePathForIdentifier(identifier) {
             if !data.writeToFile(filePath, atomically: true) {
                 return
@@ -75,8 +78,8 @@ public class Wormhole: NSObject {
     }
     
     func messageObjectFromFileWithIdentifier(identifier:String) -> AnyObject? {
-        if var data = NSData(contentsOfFile: filePathForIdentifier(identifier) ?? "") {
-            var messageObject: AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(data)
+        if let data = NSData(contentsOfFile: filePathForIdentifier(identifier) ?? "") {
+            let messageObject: AnyObject? = NSKeyedUnarchiver.unarchiveObjectWithData(data)
             return messageObject
         }
         return nil
@@ -84,7 +87,10 @@ public class Wormhole: NSObject {
     
     func deleteFileForIdentifier(identifier:String) {
         if let filePath = filePathForIdentifier(identifier) {
-            fileManager.removeItemAtPath(filePath, error: nil)
+            do {
+                try fileManager.removeItemAtPath(filePath)
+            } catch _ {
+            }
         }
     }
     
@@ -132,9 +138,15 @@ public class Wormhole: NSObject {
     }
     
     public func clearAllMessageContents() {
-        if directory != nil, let directoryPath = messagePassingDirectoryPath(), let messageFiles = fileManager.contentsOfDirectoryAtPath(directoryPath, error: nil) {
-            for path in messageFiles as! [String] {
-                fileManager.removeItemAtPath(directoryPath.stringByAppendingPathComponent(path), error: nil)
+        if directory != nil, let directoryPath = messagePassingDirectoryPath() {
+            do {
+                let messageFiles = try fileManager.contentsOfDirectoryAtPath(directoryPath)
+                for path in messageFiles {
+                    try fileManager.removeItemAtPath(directoryPath.stringByAppendingPathComponent(path))
+                }
+            }
+            catch _ {
+                
             }
         }
     }

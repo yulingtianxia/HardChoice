@@ -33,8 +33,9 @@ class DynamicCell: UITableViewCell {
             detailTextLabel!.numberOfLines = 0
         }
     }
-    override func constraints() -> [AnyObject] {
-        var constraints = [AnyObject]()
+    
+    override var constraints: [NSLayoutConstraint] {
+        var constraints = [NSLayoutConstraint]()
         
         constraints.extend(constraintsForView(textLabel!))
         
@@ -46,7 +47,7 @@ class DynamicCell: UITableViewCell {
         return constraints
     }
     
-    func constraintsForView(view:UIView) -> [AnyObject]{
+    func constraintsForView(view:UIView) -> [NSLayoutConstraint]{
         var constraints = [NSLayoutConstraint]()
         constraints.append(NSLayoutConstraint(item: view, attribute: NSLayoutAttribute.FirstBaseline, relatedBy: NSLayoutRelation.Equal, toItem: contentView, attribute: NSLayoutAttribute.Top, multiplier: 1.8, constant: 30.0))
         constraints.append(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: view, attribute: NSLayoutAttribute.Baseline, multiplier: 1.3, constant: 8))

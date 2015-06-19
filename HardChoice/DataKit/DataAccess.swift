@@ -26,8 +26,13 @@ public class DataAccess:NSObject {
             self.managedObjectContext!.performBlock({ () -> Void in
                 var error: NSError? = nil
                 if self.managedObjectContext!.hasChanges {
-                    if !self.managedObjectContext!.save(&error) {
-                        println(error?.description)
+                    do {
+                        try self.managedObjectContext!.save()
+                    } catch let error1 as NSError {
+                        error = error1
+                        print(error?.description)
+                    } catch {
+                        fatalError()
                     }
                 }
                 self.managedObjectContext?.reset()
@@ -37,8 +42,13 @@ public class DataAccess:NSObject {
             self.managedObjectContext!.performBlock({ () -> Void in
                 var error: NSError? = nil
                 if self.managedObjectContext!.hasChanges {
-                    if !self.managedObjectContext!.save(&error) {
-                        println(error?.description)
+                    do {
+                        try self.managedObjectContext!.save()
+                    } catch let error1 as NSError {
+                        error = error1
+                        print(error?.description)
+                    } catch {
+                        fatalError()
                     }
                 }
             })
@@ -64,10 +74,15 @@ public class DataAccess:NSObject {
         let sortDescriptors = [sortDescriptor]
         
         fetchRequest.sortDescriptors = sortDescriptors
-        var error: NSError?
-        return managedObjectContext?.executeFetchRequest(fetchRequest, error: &error)?.map({ (question) -> String in
-            return (question as! Question).content
-        })
+        
+        do {
+            return try managedObjectContext?.executeFetchRequest(fetchRequest).map({ (question) -> String in
+                return (question as! Question).content
+            })
+        }
+        catch {
+            return nil
+        }
     }
     
     public func fetchChoices(questionName:String?) -> [String]? {
@@ -85,11 +100,14 @@ public class DataAccess:NSObject {
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
-        var error: NSError?
-        let hehe = managedObjectContext!.executeFetchRequest(fetchRequest, error: &error)!
-        return managedObjectContext?.executeFetchRequest(fetchRequest, error: &error)?.map({ (choice) -> String in
-            return (choice as! Choice).name
-        })
+        do {
+            return try managedObjectContext?.executeFetchRequest(fetchRequest).map({ (choice) -> String in
+                return (choice as! Choice).name
+            })
+        }
+        catch {
+            return nil
+        }
     }
 
     
@@ -117,7 +135,10 @@ public class DataAccess:NSObject {
         var error: NSError? = nil
         
         var failureReason = "There was an error creating or loading the application's saved data."
-        if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: [NSPersistentStoreUbiquitousContentNameKey:"MyAppCloudStore"], error: &error) == nil {
+        do {
+            try coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: [NSPersistentStoreUbiquitousContentNameKey:"MyAppCloudStore"])
+        } catch var error1 as NSError {
+            error = error1
             coordinator = nil
             // Report any error we got.
             var dict = [String: AnyObject]()
@@ -129,6 +150,8 @@ public class DataAccess:NSObject {
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog("Unresolved error \(error), \(error!.userInfo)")
             abort()
+        } catch {
+            fatalError()
         }
         
         return coordinator
@@ -149,12 +172,14 @@ public class DataAccess:NSObject {
     // MARK: - Core Data Saving support
     
     public func saveContext () {
-        if let moc = self.managedObjectContext {
-            var error: NSError? = nil
-            if moc.hasChanges && !moc.save(&error) {
+        if let moc = self.managedObjectContext where moc.hasChanges {
+            // Save the context.
+            do {
+                try moc.save()
+            } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                NSLog("Unresolved error \(error), \(error!.userInfo)")
+                //print("Unresolved error \(error), \(error.userInfo)")
                 abort()
             }
         }

@@ -32,7 +32,7 @@ class ChoiceInterfaceController: WKInterfaceController {
     func loadData(question: AnyObject?){
         if let choices = DataAccess.sharedInstance.fetchChoices(question as? String) {
             choiceTable.setNumberOfRows(choices.count, withRowType: "ChoiceTableRowController")
-            for (index, name) in enumerate(choices) {
+            for (index, name) in choices.enumerate() {
                 let row = choiceTable.rowControllerAtIndex(index) as! ChoiceTableRowController
                 row.choiceName.setText(name)
             }

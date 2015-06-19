@@ -31,7 +31,7 @@ class QuestionInterfaceController: WKInterfaceController {
     func loadData(){
         questions = DataAccess.sharedInstance.fetchQuestions() ?? []
         questionTable.setNumberOfRows(questions.count, withRowType: "QuestionTableRowController")
-        for (index, content) in enumerate(questions) {
+        for (index, content) in questions.enumerate() {
             let row = questionTable.rowControllerAtIndex(index) as! QuestionTableRowController
             row.questionName.setText(content)
         }

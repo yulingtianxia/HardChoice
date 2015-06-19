@@ -46,7 +46,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     
-    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent) {
+    override func motionBegan(motion: UIEventSubtype, withEvent event: UIEvent?) {
         if motion == .MotionShake{
             
             let count = self.fetchedResultsController.fetchedObjects!.count
@@ -76,7 +76,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                 let message = (arr[num] as! Choice).name
                 wormhole.passMessageObject([detailItem.content, message], identifier: "shake")
                 //弹出Alert
-                var alertView = UIAlertView()
+                let alertView = UIAlertView()
                 alertView.alertViewStyle = .Default
                 alertView.title = NSLocalizedString("Congratulations",comment:"")
                 alertView.message = message
@@ -98,31 +98,28 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
 //        batchUpdateRequest.predicate = ...
         
         // Execute Batch Request
-        var batchUpdateRequestError:NSError? = nil
-        var batchUpdateResult = managedObjectContext?.executeRequest(batchUpdateRequest, error: &batchUpdateRequestError) as! NSBatchUpdateResult
-        if batchUpdateRequestError != nil {
-            println("Unable to execute batch update request.")
-            println("\(batchUpdateRequestError)\(batchUpdateRequestError?.localizedDescription)")
-        }
-        else {
+
+        do {
+            let batchUpdateResult = try managedObjectContext?.executeRequest(batchUpdateRequest) as! NSBatchUpdateResult
             // Extract Object IDs
+
             let objectIDs = batchUpdateResult.result as! [NSManagedObjectID]
             
             for objectID in objectIDs {
                 // Turn Managed Objects into Faults
-                if var managedObject = managedObjectContext?.objectWithID(objectID) {
+                if let managedObject = managedObjectContext?.objectWithID(objectID) {
                     managedObjectContext?.performBlock({ () -> Void in
                         managedObjectContext?.refreshObject(managedObject, mergeChanges: false)
                     })
                 }
             }
             // Perform Fetch
-            var fetchError: NSError? = nil
-            if !fetchedResultsController.performFetch(&fetchError) {
-                println("Unable to perform fetch.")
-                println("\(fetchError)\(fetchError?.localizedDescription)")
-            }
+            try fetchedResultsController.performFetch()
+        } catch let batchUpdateRequestError as NSError {
+            print("Unable to execute batch update request.")
+            print("\(batchUpdateRequestError)\(batchUpdateRequestError.localizedDescription)")
         }
+        
     }
     
     @IBAction func insertNewObject(sender: AnyObject) {
@@ -146,7 +143,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
         return sectionInfo.numberOfObjects
     }
     
@@ -170,10 +167,11 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             let context = self.fetchedResultsController.managedObjectContext
-            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject)
+            context.deleteObject(self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject)
             
-            var error: NSError? = nil
-            if !context.save(&error) {
+            do {
+                try context.save()
+            } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 //println("Unresolved error \(error), \(error.userInfo)")
@@ -184,8 +182,8 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     /**
     configureCell
     
-    :param: cell      cell be configured
-    :param: indexPath Data with indexPath you want to configured
+    - parameter cell:      cell be configured
+    - parameter indexPath: Data with indexPath you want to configured
     */
     func configureCell(cell: DynamicCell, atIndexPath indexPath: NSIndexPath) {
         let object = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Choice
@@ -195,7 +193,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         //1. Setup the CATransform3D structure
-        var rotation:CATransform3D
+
         if lastVisualRow <= indexPath.row {//roll up
             cell.layer.transform = rollup
         }
@@ -247,9 +245,10 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
             aFetchedResultsController.delegate = self
             _fetchedResultsController = aFetchedResultsController
-            
-            var error: NSError? = nil
-            if !_fetchedResultsController!.performFetch(&error) {
+        
+            do {
+                try _fetchedResultsController!.performFetch()
+            } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 //            println("Unresolved error \(error!), \(error!.userInfo)")
@@ -275,7 +274,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         }
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Insert:
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
@@ -286,8 +285,6 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         case .Move:
             tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
             tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        default:
-            return
         }
     }
     
@@ -327,19 +324,19 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
             // If appropriate, configure the new managed object.
             // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
             
-            newManagedObject.name = (alert.textFields?.first as! UITextField).text
-            if let weight = (alert.textFields?[1] as! UITextField).text.toInt(){
+            newManagedObject.name = (alert.textFields?.first?.text!)!
+            if let weight = Int((alert.textFields?[1].text!)!){
                 newManagedObject.weight = weight
             }
             self.detailItem!.choices = self.detailItem!.choices.setByAddingObject(newManagedObject)
             // Save the context.
-            var error: NSError? = nil
-            if !context.save(&error) {
+            do {
+                try context.save()
+            } catch {
                 // Replace this implementation with code to handle the error appropriately.
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 //println("Unresolved error \(error), \(error.userInfo)")
                 abort()
-                
             }
         }
         let cancelAction = UIAlertAction(title: cancelbtn, style: .Cancel) { (action) -> Void in
