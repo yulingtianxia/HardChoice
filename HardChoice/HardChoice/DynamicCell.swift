@@ -11,7 +11,7 @@ import UIKit
 
 class DynamicCell: UITableViewCell {
 
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
         textLabel?.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
         textLabel?.numberOfLines = 0
