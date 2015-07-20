@@ -91,34 +91,60 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         // Create Entity Description
         let batchUpdateRequest = NSBatchUpdateRequest(entityName: "Choice")
         
-        // Configure Batch Update Request
-        batchUpdateRequest.resultType = NSBatchUpdateRequestResultType.UpdatedObjectIDsResultType
-        batchUpdateRequest.propertiesToUpdate = ["weight":1]
-//        batchUpdateRequest.affectedStores = []
-//        batchUpdateRequest.predicate = ...
+        //show AlertController
+        let title = NSLocalizedString("Reset Weight",comment:"")
+        let message = NSLocalizedString("Enter the weight you want to reset", comment: "")
+        let okbtn = NSLocalizedString("OK",comment:"")
+        let cancelbtn = NSLocalizedString("Cancel",comment:"")
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        // Execute Batch Request
-
-        do {
-            let batchUpdateResult = try managedObjectContext?.executeRequest(batchUpdateRequest) as! NSBatchUpdateResult
-            // Extract Object IDs
-
-            let objectIDs = batchUpdateResult.result as! [NSManagedObjectID]
+        let okAction = UIAlertAction(title: okbtn, style: .Destructive) { [unowned self] (action) -> Void  in
             
-            for objectID in objectIDs {
-                // Turn Managed Objects into Faults
-                if let managedObject = managedObjectContext?.objectWithID(objectID) {
-                    managedObjectContext?.performBlock({ () -> Void in
-                        managedObjectContext?.refreshObject(managedObject, mergeChanges: false)
-                    })
+            // Configure Batch Update Request
+            batchUpdateRequest.resultType = .UpdatedObjectIDsResultType
+            batchUpdateRequest.propertiesToUpdate = ["weight":Int(alert.textFields?[0].text ?? "1") ?? 1]
+            //        batchUpdateRequest.affectedStores = []
+            //        batchUpdateRequest.predicate = ...
+            
+            // Execute Batch Request
+            
+            do {
+                let batchUpdateResult = try self.managedObjectContext?.executeRequest(batchUpdateRequest) as! NSBatchUpdateResult
+                // Extract Object IDs
+                
+                let objectIDs = batchUpdateResult.result as! [NSManagedObjectID]
+                
+                for objectID in objectIDs {
+                    // Turn Managed Objects into Faults
+                    print(objectID)
+                    if let managedObject = self.managedObjectContext?.objectWithID(objectID) {
+                        self.managedObjectContext?.performBlock({ () -> Void in
+                            managedObjectContext?.refreshObject(managedObject, mergeChanges: false)
+                        })
+                    }
                 }
+                // Perform Fetch
+                try self.fetchedResultsController.performFetch()
+            } catch let batchUpdateRequestError as NSError {
+                print("Unable to execute batch update request.")
+                print("\(batchUpdateRequestError)\(batchUpdateRequestError.localizedDescription)")
+            } catch {
+                print("reset weight error")
             }
-            // Perform Fetch
-            try fetchedResultsController.performFetch()
-        } catch let batchUpdateRequestError as NSError {
-            print("Unable to execute batch update request.")
-            print("\(batchUpdateRequestError)\(batchUpdateRequestError.localizedDescription)")
         }
+        let cancelAction = UIAlertAction(title: cancelbtn, style: .Cancel) { (action) -> Void in
+            
+        }
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        alert.addTextFieldWithConfigurationHandler { (weightTF) -> Void in
+            weightTF.borderStyle = .None
+            weightTF.keyboardType = .NumberPad
+            weightTF.placeholder = NSLocalizedString("Weight can only be an integer",comment:"")
+            weightTF.delegate = self
+        }
+        
+        self.presentViewController(alert, animated: true, completion: nil)
         
     }
     
