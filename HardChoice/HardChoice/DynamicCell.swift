@@ -37,10 +37,10 @@ class DynamicCell: UITableViewCell {
     override var constraints: [NSLayoutConstraint] {
         var constraints = [NSLayoutConstraint]()
         
-        constraints.extend(constraintsForView(textLabel!))
+        constraints.appendContentsOf(constraintsForView(textLabel!))
         
         if detailTextLabel != nil {
-            constraints.extend(constraintsForView(detailTextLabel!))
+            constraints.appendContentsOf(constraintsForView(detailTextLabel!))
         }
         constraints.append(NSLayoutConstraint(item: contentView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.GreaterThanOrEqual, toItem: contentView, attribute: NSLayoutAttribute.Height, multiplier: 0, constant: 44))
         contentView.addConstraints(constraints)

@@ -46,10 +46,9 @@ public class Wormhole: NSObject {
     func messagePassingDirectoryPath() -> String? {
         let appGroupContainer = self.fileManager.containerURLForSecurityApplicationGroupIdentifier(applicationGroupIdentifier)
         let appGroupContainerPath = appGroupContainer?.path
-        if directory != nil, var directoryPath = appGroupContainerPath {
-            directoryPath = directoryPath.stringByAppendingPathComponent(directory!)
+        if directory != nil, let directoryPath = appGroupContainerPath, let pathurl = NSURL(string: directoryPath)?.URLByAppendingPathComponent(directory!).path {
             do {
-                try fileManager.createDirectoryAtPath(directoryPath, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectoryAtPath(pathurl, withIntermediateDirectories: true, attributes: nil)
             } catch _ {
             }
             return directoryPath
@@ -60,7 +59,8 @@ public class Wormhole: NSObject {
     func filePathForIdentifier(identifier:String) -> String? {
         if identifier.characters.count != 0, let directoryPath = messagePassingDirectoryPath() {
             let fileName = "\(identifier).archive"
-            return directoryPath.stringByAppendingPathComponent(fileName)
+            
+            return NSURL(string: directoryPath)?.URLByAppendingPathComponent(fileName).path
         }
         return nil
     }
@@ -97,7 +97,7 @@ public class Wormhole: NSObject {
     // MARK: - Private Notification Methods
     
     func sendNotificationForMessageWithIdentifier(identifier:String) {
-        CFNotificationCenterPostNotification(center, identifier, nil, nil, 1)
+        CFNotificationCenterPostNotification(center, identifier, nil, nil, true)
     }
     
     func registerForNotificationsWithIdentifier(identifier:String) {
@@ -142,7 +142,9 @@ public class Wormhole: NSObject {
             do {
                 let messageFiles = try fileManager.contentsOfDirectoryAtPath(directoryPath)
                 for path in messageFiles {
-                    try fileManager.removeItemAtPath(directoryPath.stringByAppendingPathComponent(path))
+                    if let pathurl = NSURL(string: directoryPath)?.URLByAppendingPathComponent(path).path {
+                        try fileManager.removeItemAtPath(pathurl)
+                    }
                 }
             }
             catch _ {
