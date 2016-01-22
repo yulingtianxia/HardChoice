@@ -582,6 +582,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "杨萧玉";
 				TargetAttributes = {
@@ -717,7 +718,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 9f390390e312b5a6d8108a6d977e5b5425ef2da3 c3f24c2e2f19128e225aacae23e2fa2659ec714e7f411c46a14eca2577b9c550";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ]; then\n./Fabric.framework/run 9f390390e312b5a6d8108a6d977e5b5425ef2da3 c3f24c2e2f19128e225aacae23e2fa2659ec714e7f411c46a14eca2577b9c550\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
