@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 import DataKit
+#if !DEBUG
 import Fabric
 import Crashlytics
-
+#endif
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -32,7 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        else{
 //            println("URL=nil")
 //        }
+        #if !DEBUG
         Fabric.with([Crashlytics()])
+        #endif
         return true
     }
 

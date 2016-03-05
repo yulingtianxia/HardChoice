@@ -119,7 +119,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                     print(objectID)
                     if let managedObject = self.managedObjectContext?.objectWithID(objectID) {
                         self.managedObjectContext?.performBlock({ () -> Void in
-                            managedObjectContext?.refreshObject(managedObject, mergeChanges: false)
+                            self.managedObjectContext?.refreshObject(managedObject, mergeChanges: false)
                         })
                     }
                 }
