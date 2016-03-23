@@ -32,7 +32,7 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
         tableView.tableFooterView = UIView()
         headerBtn.setTitle(NSLocalizedString("Reset Weight",comment:""), forState: UIControlState.Normal)
         headerBtn.backgroundColor = UIColor.redColor()
-        headerBtn.addTarget(self, action: "resetWeight:", forControlEvents: UIControlEvents.TouchUpInside)
+        headerBtn.addTarget(self, action: #selector(DetailViewController.resetWeight(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         tableView.tableHeaderView = headerBtn
         navigationController?.hidesBarsOnSwipe = true
         
@@ -66,9 +66,9 @@ class DetailViewController: UITableViewController, NSFetchedResultsControllerDel
                     }
                     else{
                         lucknum-=n
-                        num++
+                        num += 1
                         if num>=count{
-                            num--
+                            num -= 1
                             break
                         }
                     }
