@@ -33,4 +33,6 @@ HardChoice代码教程地址：
 
 ~~语法更新至beta7（2014.9.5），出现连接错误时可以clean build folder（点product->clean之前按住option）试试。~~
 
-2015.2.10更新语法至Swift 1.2，语法改动较大，请在Xcode 6.3 及更高版本运行。  
+2015.2.10 更新语法至Swift 1.2，语法改动较大，请在Xcode 6.3 及更高版本运行。
+
+2015.3.23 更新至 Swift 2.2，请使用 Xcode 7.3 及以上版本运行。
