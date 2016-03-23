@@ -33,7 +33,7 @@ public class Wormhole: NSObject {
         directory = dir
         fileManager = NSFileManager()
         listenerBlocks = Dictionary()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveMessageNotification:", name: WormholeNotificationName, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(Wormhole.didReceiveMessageNotification(_:)), name: WormholeNotificationName, object: nil)
     }
     
     deinit{
